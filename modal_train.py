@@ -225,7 +225,7 @@ def train_remote(*args: str) -> None:
 )
 def eval_remote(*args: str) -> None:
     normalized_args = _normalize_modal_args(args, is_eval=True)
-    cmd = ["python", "-u", "-m", "hw4.eval", *normalized_args]
+    cmd = ["python", "-u", f"{PROJECT_DIR}/sft_eval.py", *normalized_args]
     _run_subprocess_with_periodic_volume_commits(cmd)
 
 

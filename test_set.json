@@ -1,0 +1,4777 @@
+[
+  {
+    "doi": "10.1002/adfm.201102157",
+    "ms": "all paper ft data/wiley/10.1002_adfm.201102157/adfm.201102157_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the main application of Cu − TCA and Eu − TCA as mentioned in the text?",
+        "answer": "Luminescent detection of NO in aqueous solution and biological imaging.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What causes the luminescence recovery in Cu − TCA upon the addition of NO?",
+        "answer": "The coordination of NO to the Cu(II) ions reduces Cu2+ centers to Cu+ and recovers the luminescence.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: Eu − TCA is sensitive to water, which limits its application in fluorescence imaging in biological systems.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of triphenylamine moiety in Cu − TCA and Eu − TCA?",
+        "answer": "It acts as an efficient emitter for the luminescent detection of NO.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the luminescence intensity of Cu − TCA change upon treatment with NO?",
+        "answer": "The luminescence intensity of Cu − TCA increases about 700-fold upon treatment with 1 mM NO.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The luminescence detection of NO using Cu − TCA is affected by the presence of other reactive species like H2O2, NO3−, and ClO−.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What structural feature of Cu − TCA contributes to its high selectivity in NO detection?",
+        "answer": "The three-dimensional porous structure with paramagnetic Cu2+ ions.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthesis of Cu − TCA involves a solvothermal reaction of H3TCA and Cu(NO3)2 in mixed solvents of DMF and methanol.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the europium luminescence in Eu − TCA when detecting NO?",
+        "answer": "The europium luminescence acts as an internal standard, allowing for ratiometric luminescent responses towards NO.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthesis of Eu − TCA is achieved through a hydrothermal reaction using europium nitrate and H3TCA.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the fluorescence intensity of Eu − TCA at 430 nm change upon addition of NO?",
+        "answer": "The fluorescence intensity at 430 nm increases gradually with enhanced efficiency up to 1620-fold upon addition of NO.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The fluorescence response of Eu − TCA is specific to NO over other reactive species present in biological systems.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main challenge in using Eu − TCA for fluorescence imaging in biological systems?",
+        "answer": "Eu − TCA is very sensitive to water, leading to fluorescence quenching in its presence.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The luminescence imaging of Cu − TCA can be used to monitor intracellular nitric oxide in living cells.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the paddlewheel dinuclear Cu2 units in the structure of Cu − TCA?",
+        "answer": "They contribute to the formation of a non-interpenetrating 3D network in Cu − TCA.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The emission decay curves for Cu − TCA fit best by a monoexponential function before and after treatment with NO.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What experimental technique confirmed the formation of a Cu(I) species during the reaction between NO and Cu(II) complexes in Cu − TCA?",
+        "answer": "Electron paramagnetic resonance (EPR) spectroscopy.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthesis of NCu − TCA nanoparticles involves microwave heating of a solution of H3TCA and Cu(NO3)2 in DMF/CH3OH.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the synthesis method of Eu − TCA differ from that of Cu − TCA?",
+        "answer": "Eu − TCA is produced by a hydrothermal reaction, while Cu − TCA is synthesized through a solvothermal reaction.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The luminescence detection of NO using Cu − TCA and Eu − TCA is based on the same mechanism.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adfm.202008499",
+    "ms": "all paper ft data/wiley/10.1002_adfm.202008499/adfm.202008499_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the main objective of the United Nations agenda 2030 mentioned in the text?",
+        "answer": "Access to safe drinking water",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What are the two amino acids from which the novel MOFs were derived for mercury removal?",
+        "answer": "S-methyl-L-cysteine and L-methionine",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why do MOF-based MMMs exhibit high efficiency in removing Hg2+ from water?",
+        "answer": "Due to the high density of thio-alkyl groups decorating MOF channels",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the acceptable limit for mercury concentration in drinking water according to the study?",
+        "answer": "Less than 2 parts per billion",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOF derived from S-methyl-L-cysteine was previously known for its mercury removal efficiency.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used to characterize the novel MOF derived from S-methyl-L-cysteine?",
+        "answer": "Single-crystal X-ray crystallography",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How were the MOFs incorporated into the mixed matrix membranes (MMMs)?",
+        "answer": "By embedding them in a porous polyimide matrix Matrimid 5218",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOF-based MMMs were only tested in static conditions for mercury removal.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the mercury removal efficiency of MOF 2 under static conditions?",
+        "answer": "It reduced Hg2+ concentration from 10 ppm to 4.6 parts per billion",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The crystal structure of MOF 2 remained unchanged after soaking in a saturated HgCl2 solution.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the purpose of coating the MMMs with a Hyflon AD60x protective layer?",
+        "answer": "To improve the chances of reducing leaching by ensuring efficient entrapment of the MOFs inside the membrane",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The presence of other ions in oligo mineral water did not affect the Hg2+ capture efficiency of 1@Matrimid and 2@Matrimid.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the final Hg2+ concentration after 72 hours of static adsorption in oligo mineral water using 2@Matrimid?",
+        "answer": "Below the 1.2 ppb detection limit",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The study demonstrated that MOF-based MMMs can be reused after a regeneration process.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the main advantage of using MOF-based MMMs for water remediation according to the conclusion?",
+        "answer": "They offer a sustainable, effective, and cheap solution for mercury removal from water with high selectivity toward Hg2+",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The study reported the use of MOF-based MMMs for gas separation applications.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the role of the thio-alkyl functionalities in the MOF pores?",
+        "answer": "To decontaminate aqueous environments very efficiently, even from very low concentrations of mercury",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The study provided a novel device for the dynamic capture of Hg2+ using MOF-MMMs.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the maximum Hg2+ adsorption capacity of 2@Matrimid?",
+        "answer": "690 mg g−1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The study's results suggest that MOF-based MMMs cannot be implemented in water remediation.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adfm.202203745",
+    "ms": "all paper ft data/wiley/10.1002_adfm.202203745/adfm.202203745_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the name of the crystal that provides an effective sieving path for linear molecules?",
+        "answer": "NTU-67",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the record productivity of C2H4 achieved by NTU-67?",
+        "answer": "121.5 mL g−1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: NTU-67 is synthesized using a postsynthetic method of crystal transformation in boiling alkaline solution.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main challenge in the chemical industry that NTU-67 addresses?",
+        "answer": "Ethylene (C2H4) purification from multicomponent mixtures by physical adsorption",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What are the two impurities crucial to remove for the recovery of polymer-grade C2H4?",
+        "answer": "Acetylene (C2H2) and carbon dioxide (CO2)",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: NTU-67's flow channel can kinetically distinguish between CO2 or C2H2 and a butterfly-like molecule of C2H4.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the temperature at which NTU-67 maintains its structural integrity and functionality?",
+        "answer": "343 K",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "How does NTU-67 achieve its high efficiency in C2H4 purification?",
+        "answer": "By having a flow channel for sieving and an adjacent channel for molecular trapping",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: NTU-67 has a lower productivity of C2H4 compared to NTU-65.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the three-bladed array in NTU-67?",
+        "answer": "It enables the crystal to afford a record productivity of C2H4 from C2H2/CO2/C2H4 mixtures.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: NTU-67's synthesis in boiling alkaline solution does not contribute to its robustness under hot acid/base conditions.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the global requirement for C2H4 as reported in 2021?",
+        "answer": "220–230 million tons",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The molecular-level insight into NTU-67's functionality was only computationally found.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main advantage of using a single adsorbent like NTU-67 for gas separation?",
+        "answer": "It can exclude C2H4 from a ternary mixture without the need for multiple adsorbents.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: NTU-67's design philosophy cannot be applied to further challenging tasks beyond C2H4 purification.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the selectivity of CO2/C2H4 achieved by NTU-67 at 298 K, 1 bar?",
+        "answer": "10.8",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does NTU-67's structure contribute to its gas separation capabilities?",
+        "answer": "Its structure features a mmo net that forms a new group of porous isomers with NTU-65.",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: NTU-67's performance in C2H4 purification is significantly reduced in the presence of moisture.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the estimated pore size distribution center of NTU-67?",
+        "answer": "0.495 nm",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why is NTU-67 considered a promising material for industrial applications?",
+        "answer": "Due to its high efficiency in C2H4 purification, robustness under various conditions, and innovative trap-and-flow channel design.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adma.200904238",
+    "ms": "all paper ft data/wiley/10.1002_adma.200904238/adma.200904238_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the critical temperature (Tc) of MnII(TCNE)3/2(I3)1/2 at ambient pressure?",
+        "answer": "171 K",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What property of V[TCNE]x makes it a candidate for 'spintronic' applications?",
+        "answer": "Its valence and conduction bands are spin-polarized.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does Mn[TCNE]3/2(I3)1/2 exhibit stronger or weaker spin coupling compared to V[TCNE]x?",
+        "answer": "Stronger spin coupling",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: Mn[TCNE][C4(CN)8]1/2 exhibits significant dispersive susceptibility above 50 K.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the Tc of Mn[TCNE][C4(CN)8]1/2?",
+        "answer": "68 K",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The magnetic behavior of [Fe[TCNE](NCMe)2][FeCl4] is comparable to the 3D coupled Mn[TCNE]3/2(I3)1/2.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of m4-[TCNE](cid:2)(cid:3) in the structure of MnII[TCNE]3/2(I3)1/2?",
+        "answer": "It bridges the MnII ions both between and within the layers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: Mn[TCNE]3/2(I3)1/2 and Mn[TCNE][C4(CN)8]1/2 have the same structural motif.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the angle between intra- and interlayer Mn–N bonds in MnII[TCNE]3/2(I3)1/2?",
+        "answer": "It permits the m4-[TCNE](cid:2)(cid:3) to bridge the corrugated layers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The magnetic ordering of Mn[TCNE]3/2(I3)1/2 is attributed to antiferromagnetic coupling.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What happens to the Tc of Mn[TCNE]3/2(I3)1/2 under the application of moderate pressure?",
+        "answer": "It increases substantially to 273 K.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: Mn[TCNE][C4(CN)8]1/2 exhibits a transition to another magnetic state below 50 K.",
+        "answer": "False",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the m4-[C4(CN)8]2(cid:3) species in Mn[TCNE][C4(CN)8]1/2?",
+        "answer": "It bridges the layers leading to dominant antiferromagnetic behavior.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The magnetic properties of Mn[TCNE][C4(CN)8]1/2 are attributed to antiferromagnetic coupling between two interpenetrating ferromagnetic lattices.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the saturation magnetization of Mn[TCNE]3/2(I3)1/2 at 10 K?",
+        "answer": "21 800 emuOe mol(cid:3)1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: Mn[TCNE][C4(CN)8]1/2 exhibits hysteretic behavior with a coercive field.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the critical temperature of Mn[TCNE]3/2(I3)1/2 determined by the onset of the low field M(T), Mr(T), or x00(T) data?",
+        "answer": "171 K",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the 3D network structure in MnII[TCNE]3/2(I3)1/2?",
+        "answer": "It leads to strong spin coupling, not only within, but also between the layers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The structure of MnII[TCNE]3/2(I3)1/2 suggests a topology for the amorphous room temperature magnets.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of THF in the composition of MnII[TCNE]3/2(I3)1/2?",
+        "answer": "It resides in channels parallel to the c-axis, but is disordered.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adma.201102880",
+    "ms": "all paper ft data/wiley/10.1002_adma.201102880/adma.201102880_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is a key feature in metal-organic frameworks (MOFs)?",
+        "answer": "Porosity",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What strategy has been adopted to increase the pore sizes in MOFs?",
+        "answer": "Increasing the length of bridging ligands",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why is CO2 uptake important in the context of MOFs?",
+        "answer": "Because of its potential to address global warming by removing CO2 from the atmosphere",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOFs discussed have fixed framework topology but varied pore sizes.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of alkyl ether fragment in MOFs?",
+        "answer": "It is beneficial to selective CO2 uptake",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How are lanthanide(III) ions introduced into the pores of MOFs?",
+        "answer": "By soaking the MOF in DMF solutions of nitrate salts of Eu3+ or Tb3+",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The CO2 uptake of MOF 3 is 85 cm3/g at 298 K and 1 atm.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the CO2/N2 selectivity in MOFs?",
+        "answer": "It indicates the MOFs' efficiency in selectively adsorbing CO2 over N2, which is crucial for CO2 capture applications",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The activated samples of MOFs are almost amorphous.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the purpose of using MOFs for column-chromatographic dye separation?",
+        "answer": "To separate large dye molecules based on the size-exclusion effect",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOFs can encapsulate lanthanide cations for luminescence.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the crystal data for compound 1?",
+        "answer": "C111H96O50Zn8, M = 2752.84, trigonal",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The mesoporous MOFs discussed have corundum topology.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of ligand extension on the MOFs?",
+        "answer": "It gradually increases the sizes of microporous and mesoporous cages within the fixed framework",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOFs exhibit high and selective CO2/N2 uptake under ambient conditions.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of Zn4O(CO2)6 SBU in the synthesis of MOFs?",
+        "answer": "It is used as a secondary building unit to combine with tetratopic ligands under solvothermal conditions",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOFs' CO2 uptake capability increases with larger cage sizes.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the CO2 uptake value of 85 cm3/g at 298 K and 1 atm for MOF 3?",
+        "answer": "It highlights the MOF's high efficiency in CO2 capture, which is significant for addressing environmental concerns",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "What is the occupancy factor of Zn1 in the MOFs?",
+        "answer": "1/3",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOFs discussed can serve as barcoded luminescent materials.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adma.201702512",
+    "ms": "all paper ft data/wiley/10.1002_adma.201702512/adma.201702512_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the chemical formula of the MOF that demonstrated a giant room-temperature magnetodielectric response?",
+        "answer": "[NH2(CH3)2]n[FeIIIFeIIx(HCOO)6]n (x ≈ 0.63–0.69)",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the range of the MD coefficient for the MOF at 0.1 T?",
+        "answer": "Between -20% and -24%",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "At what temperature range does the MOF maintain its MD coefficient?",
+        "answer": "300 to 410 K",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of electron hopping in enhancing the magnetodielectric response near room temperature?",
+        "answer": "Electron hopping between the transition metal ions can significantly enhance the magnetodielectric response near room temperature.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The MOF represents the first example of MOF-based materials with an above room-temperature magnetodielectric response.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used to synthesize MOF 1?",
+        "answer": "Hydrothermal reaction",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the space group of MOF 1?",
+        "answer": "Trigonal P 31c",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The NiII ions in MOF 1 are distributed homogeneously within all crystals.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the activation energy for electron hopping in MOF 1 for E//c?",
+        "answer": "0.384 eV",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the behavior of the electrical conductivity of MOF 1 with increasing temperature?",
+        "answer": "The electrical conductivity increases with increasing temperature, indicating semiconductor behavior.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The magnetodielectric response in MOF 1 is due to its intrinsic properties and not influenced by the magnetoresistance effect.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main contribution to the giant magnetodielectric response in MOF 1?",
+        "answer": "Electron hopping between the NiII ions",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: MOF 1 exhibits a giant magnetodielectric response at room temperature and in a small external magnetic field.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the MD coefficient of MOF 1 at 300 K and 0.1 T?",
+        "answer": "-24%",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The polarization axis of MOF 1 and 2 is the c-axis.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of doping NiII on the magnetic ordering temperature in MOF 1?",
+        "answer": "The doping of NiII leads to the magnetic ordering temperature in MOF 1 being higher than that in MOF 2 and lower than that in MOF 3.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The magnetodielectric response in MOF 1 is significantly larger than that in MOF 4.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the dimethylamine cations in MOF 1?",
+        "answer": "The dimethylamine cations occupy the cavities with their nitrogen atoms located in three different positions.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The activation energy for electron hopping in MOF 2 is significantly larger than that in MOF 1.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the temperature-dependent dielectric constant of MOF 1?",
+        "answer": "It indicates the relaxor character of MOF 1.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.200351546",
+    "ms": "all paper ft data/wiley/10.1002_anie.200351546/anie.200351546_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the chemical formula of MOF-150?",
+        "answer": "[Zn4O(TCA)2]·(DMF)3(H2O)3",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What topology does MOF-150 exhibit?",
+        "answer": "Pyrite topology",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What are the secondary building units (SBUs) used in the synthesis of MOF-150?",
+        "answer": "TCA and [Zn4O(CO2)6]",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the symmetry of the interpenetrating frameworks in MOF-150?",
+        "answer": "Ia3¯",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the ratio of trihedral to hexahedral tiles in the pyrite net?",
+        "answer": "2:1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the transitivity of the pyrite net?",
+        "answer": "2112",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the pyrite net in the context of MOF-150?",
+        "answer": "It is identified as the default structure for the assembly of triangles and octahedra.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why is the pyrite net considered more regular than the rutile topology?",
+        "answer": "Because the pyrite net has a higher symmetry with transitivity 2112 compared to rutile's 2232.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What role do the solvent guests play in the structure of MOF-150?",
+        "answer": "They fill the space remaining after interpenetration in the crystal.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How are the SBUs in MOF-150 produced?",
+        "answer": "By employing previously determined reaction parameters to effect their formation in situ.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the result of heating MOF-150 at 10 °C min-1 in air from 30 to 700 °C?",
+        "answer": "A weight loss step at 240 °C corresponding to the loss of all guest molecules.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is MOF-150 the first example of a fully catenated structure with mixed coordination?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does MOF-150 have the same topology as the high-pressure form of PdF2?",
+        "answer": "False",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are all rings in the pyrite net 6-rings and related by symmetry?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the pyrite net self-dual?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Do the two interpenetrating frameworks in MOF-150 have different symmetries?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the default net for a given connectivity always the one with the highest symmetry?",
+        "answer": "True",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Does the synthesis of MOF-150 involve heating a mixture in a quartz tube under vacuum?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.200462126",
+    "ms": "all paper ft data/wiley/10.1002_anie.200462126/anie.200462126_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the stoichiometry of the compounds formed by the reduction of specifically preoriented bisdiazenes by alkali metals?",
+        "answer": "(M+)2-12(cid:1)",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How many electrons are cyclically delocalized in the plane made up by the four nitrogen atoms in the reduced bisdiazenes?",
+        "answer": "Six electrons",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the structural motif of the core unit in the solid-state structure of the sodium compound of 12(cid:1)?",
+        "answer": "A distorted Na4N8 cuboctahedron",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What causes the difference between the two transannular N(cid:1)N distances in the precursor 1?",
+        "answer": "The interaction between the methyl group and the hydrogen atoms on C3 and C9 in anti position",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the symmetry of the dianion 12(cid:1) in solution as indicated by 1H NMR spectra?",
+        "answer": "Cs symmetry",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What does the splitting of the 1H NMR signals of the a-hydrogen atoms and the methyl group into two resonances upon cooling to (cid:1)30 8C indicate?",
+        "answer": "A fluxional process, whereby the dimer with the methyl groups in anti position interconverts with the corresponding syn conformer",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why were single crystals of pure [Na2(1)(THF/DME)x]y not obtained by reduction of 1 on a sodium mirror in THF or DME?",
+        "answer": "However, crystals suitable for a X-ray structure analysis were obtained as a 2:1 mixture of [Na2(1)] and bishydrazine 2[1c] from a THF solution kept in contact with sodium metal for several weeks.",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "What is the likely proton source for the formation of bishydrazine 2 by a Birch-type reduction of 1?",
+        "answer": "The solvent THF",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What does the molecular volume calculated from the diffusion coefficient indicate about the structure of [Na4(1)2(THF)x] in solution?",
+        "answer": "It is close to the estimated volume of the [Na4(1)2] cluster in the chain polymer [Na4(1)2(2)(THF)4]¥, indicating this cluster is also present in solution.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the bishydrazine 2 as ligand in the structure of [Na4(1)2(THF)x] in solution?",
+        "answer": "It is replaced by THF, that is, [Na4(1)2-(THF)x] (x = 4–6).",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What does the presence of a fluxional process in the dianion 12(cid:1) indicate about its structure?",
+        "answer": "It suggests that the structure can dynamically change between different conformers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What does the calculated strongly negative nucleus independent chemical shift (NICS) of (cid:1)18.4 ppm at the N4 ring centroid suggest about the model structure [Na4(1)F2]?",
+        "answer": "It suggests that the model structure [Na4(1)F2] is a bishomoaromatic system.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the S0 singlet state for the counterion-free dianions stable with respect to the T0 triplet states?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are the N=N bonds in the reduced bisdiazenes shorter than in the precursor 1?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the molecular volume of [Na4(1)2(THF)x] in solution significantly different from that of the [Na4(1)2] cluster in the chain polymer [Na4(1)2(2)(THF)4]¥?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the dianion 12(cid:1) exhibit Cs symmetry in both solid-state and solution?",
+        "answer": "True",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Is the core of the [Na4(1)2] unit a distorted Na4N8 cuboctahedron in both the solid state and solution?",
+        "answer": "True",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Does the transannular N(cid:1)N bond path show characteristics of typical shared and closed-shell interactions?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are the electron populations of the four nitrogen atomic basins exactly the same?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the dimer with the methyl groups in anti position the only conformer present at low temperatures?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.200600376",
+    "ms": "all paper ft data/wiley/10.1002_anie.200600376/anie.200600376_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the main focus of the study conducted by Mangayarkarasi Nagarathinam and Jagadese J. Vittal?",
+        "answer": "The main focus of the study is on the anisotropic movements of coordination polymers upon desolvation, specifically the solid-state transformation of a linear 1D coordination polymer to a ladderlike structure.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What phenomenon allows the [2+2] cycloaddition of olefinic double bonds in coordination polymers under UV irradiation?",
+        "answer": "The phenomenon that allows the [2+2] cycloaddition of olefinic double bonds in coordination polymers under UV irradiation is the preorganization of bpe ligands during desolvation.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The coordination polymer [Ag(m2-bpe)]n exhibits Ag···Ag interaction in its solvated structure.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used to obtain the crystals of [Ag(m-bpe)(H2O)]-(CF3CO2)·CH3CN (1)?",
+        "answer": "The crystals were obtained by a layering method from equimolar solutions of bpe and Ag(O2CCF3)·H2O.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What structural change occurs to compound 1 upon desolvation and UV irradiation?",
+        "answer": "Upon desolvation and UV irradiation, compound 1 undergoes a structural change from a single-stranded to a ladder-type structure.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The desolvated crystalline powder of compound 2 was completely photodimerized after 8 hours of UV irradiation.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What interactions provide thermodynamic stability to the ladder-type arrangement in compound 2?",
+        "answer": "The p···p and Ag···Ag interactions provide thermodynamic stability to the ladder-type arrangement in compound 2.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How were the crystals of compound 2 obtained?",
+        "answer": "The crystals of compound 2 were obtained on reaction of equimolar amounts of bpe and Ag(O2CCF3) under different reaction conditions with the same solvents.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The X-ray powder diffraction pattern of desolvated 1 matches well with that of desolvated 2.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What does the transformation of a linear 1D coordination polymer to a ladder-type polymeric structure indicate about molecular movements?",
+        "answer": "The transformation indicates that cooperative anisotropic molecular movements result from desolvation in a coordination polymer.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The solvated structure of compound 2 is stable under UV irradiation.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What analytical technique confirmed the complete disappearance of the olefinic proton signal in the photodimerized product?",
+        "answer": "The 1H NMR spectrum in [D6]DMSO confirmed the complete disappearance of the olefinic proton signal in the photodimerized product.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the Ag···O distance in the transformation process of compound 1?",
+        "answer": "The significance of the Ag···O distance in the transformation process of compound 1 is that it indicates the cooperative lateral movements of the coordination polymers and CF3CO2- ions within the crystal during the phase-rebuilding process.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The crystal structure of compound 1 remains unchanged after desolvation.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What experimental technique was used to collect crystal data for compounds 1 and 2?",
+        "answer": "Crystal data for compounds 1 and 2 were collected on a Bruker APEX diffractometer with a CCD detector and graphite-monochromated MoKa radiation.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The solid-state FTIR spectra of desolvated 1 and 2 are exactly the same.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What does the presence of a new signal attributable to cyclobutane protons in the 1H NMR spectrum indicate?",
+        "answer": "The presence of a new signal attributable to cyclobutane protons in the 1H NMR spectrum indicates the formation of the expected photodimerized product.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The transformation from a single-stranded to a ladder-type structure in compound 1 is facilitated by Ag···Ag and p···p interactions.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What role do the trifluoroacetate ligands play in the structure of compound 2?",
+        "answer": "In compound 2, two linear polymers [(m-bpe)Ag] are bridged by two trifluoroacetate ligands to form a double-stranded, molecular-ladder-like coordination polymer.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the outcome of the quantitative photodimerization on irradiation of desolvated 1?",
+        "answer": "The outcome of the quantitative photodimerization on irradiation of desolvated 1 is the complete conversion of the olefins to cyclobutane derivatives.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.201308220",
+    "ms": "all paper ft data/wiley/10.1002_anie.201308220/anie.201308220_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the simplest isolated stable compound containing a phosphorus–carbon triple bond?",
+        "answer": "The (OCP)²⁻ anion",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used to synthesize Li(OCP) from Li[P(SiMe3)2]?",
+        "answer": "The synthesis involved dimethylcarbonate, (MeO)2CO.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the (OCP)²⁻ anion described as a superposition of resonance structures?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the yield percentage based on phosphorus for the synthesis of [Na(OCP)·(dioxane)x]?",
+        "answer": "70%",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the alkali metal salts of the (OCP)²⁻ anion be briefly treated with water?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What reaction mechanism is proposed for the formation of the phospholide anion 5?",
+        "answer": "The cyclic intermediate 3 b is in equilibrium with the acyclic phosphaketene 3 b’, which reacts further with a second equivalent of alkyne 2 b.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the observed 31P NMR resonance for the intermediate assumed to be 7?",
+        "answer": "154.9 ppm",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the sodium salt of phosphinin-2-olate (11) stable in air or water?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the pKa value of phosphinin-2-ol (11 H)?",
+        "answer": "8.16",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the reaction of Na(OCP) with α-pyrone 10 involve gas evolution?",
+        "answer": "Yes, CO2 gas evolves.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What type of structural motif is common in the solid state structures of the sodium salt 4 a and the disodium salt 8?",
+        "answer": "Na2O2 rings",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are the phosphorus-containing heterocycles in all compounds flat?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the NICS(1) value for phosphinin-4-ol indicating its aromaticity?",
+        "answer": "-9.6 ppm",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the deprotonation of phenol lead to a reduction in aromaticity?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the primary product formed by nucleophilic attack of the (OCP)²⁻ anion on the activated alkyne in the synthesis of phospholide anion 5?",
+        "answer": "The acyclic phosphaketene 3 b’",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the (OCP)²⁻ anion in cycloadditions according to the text?",
+        "answer": "It undergoes [2+2], [3+2], and [4+2] cycloadditions, initiated by a nucleophilic attack of the phosphorus atom.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the PC4 ring in the phospholide ring 5 coordinated to a metal center?",
+        "answer": "No, it is not coordinated to a metal center.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the computed barrier for the monomolecular shift between 11 H and phosphinin-2(1H)-one?",
+        "answer": "275.7 kJ mol⁻¹",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of the phosphorus atom on the aromaticity of the neutral or anionic ring systems?",
+        "answer": "The phosphorus atom has no significant effect on the aromaticity of either the neutral or anionic ring systems.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the synthesis of Na(OCP) described as a simple one-pot procedure?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.202009613",
+    "ms": "all paper ft data/wiley/10.1002_anie.202009613/anie.202009613_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What are the applications of conductive coordination polymers (CPs)?",
+        "answer": "Applications include energy conversion and storage, electrocatalysts, chemiresistive sensors, spintronics, superconductors, quantum materials, and topological insulators.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the record-breaking performance of Cu5.5C6S6 as a thermoelectric material?",
+        "answer": "Cu5.5C6S6 is a p-type thermoelectric material with a ZT value of 0.12 at 390 K.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the electrical conductivity of Cu4C6S6 and Cu5.5C6S6 compare to Cu3C6S6?",
+        "answer": "The electrical conductivities of Cu4C6S6 and Cu5.5C6S6 are similar to that of Cu3C6S6, which is 240 S cm@1.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: Cu4C6S6 and Cu5.5C6S6 contain counter balancing ions.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the organic moiety in the structure of Cu4C6S6 and Cu5.5C6S6?",
+        "answer": "The organic moiety within the structure plays the role of dopant.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The doping process for Cu4C6S6 and Cu5.5C6S6 occurs in situ.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the crystal structure of Cu4C6S6 and Cu5.5C6S6 classified as?",
+        "answer": "They are classified as organic–inorganic hybrid copper sulfides.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the oxidation level of BHT in the synthesis of Cu4C6S6 and Cu5.5C6S6?",
+        "answer": "The oxidation level of BHT affects the electronic structure, acting like a doping process, and influences the position of the Fermi level.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: Cu4C6S6 and Cu5.5C6S6 are electrically neutral systems without external doping.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What distinguishes the electronic structures of Cu4C6S6 and Cu5.5C6S6?",
+        "answer": "Both act as degenerate semiconductors, but they have different positions of the Fermi level due to varying oxidation levels of BHT.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The thermoelectric performance of Cu5.5C6S6 is superior to that of Cu4C6S6.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used to measure the electrical conductivity of Cu4C6S6 and Cu5.5C6S6?",
+        "answer": "The four-probe method was used.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the doping-like process occur in the synthesis of Cu4C6S6 and Cu5.5C6S6?",
+        "answer": "An in situ oxidation process happens during their formation, where the organic part of the structure acts as a dopant.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The crystal structures of Cu4C6S6 and Cu5.5C6S6 were determined solely by PXRD data.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of CH3CN in the synthesis of Cu4C6S6 and Cu5.5C6S6?",
+        "answer": "CH3CN serves as a modulating agent to slow down both the nucleation and growth processes, producing samples with high crystallinity.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthesis of Cu4C6S6 and Cu5.5C6S6 introduces new concerns such as de-doping.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What distinguishes the crystal structures of Cu4C6S6 and Cu5.5C6S6 from Cu3C6S6?",
+        "answer": "Cu4C6S6 and Cu5.5C6S6 have more complex structures with 3D Cu-S networks, unlike the extended 2D layer structure of Cu3C6S6.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The oxidation process during the formation of Cu4C6S6 and Cu5.5C6S6 is similar to conventional doping in semiconducting polymers.",
+        "answer": "True",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the Cu-Cu bond in the structures of Cu4C6S6 and Cu5.5C6S6?",
+        "answer": "The Cu-Cu bond adds further diversity to potential structures and is part of the 3D Cu-S networks.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the Seebeck coefficient of Cu5.5C6S6 compare to that of Cu4C6S6?",
+        "answer": "The Seebeck coefficient of Cu5.5C6S6 is nearly two-fold larger than that of Cu4C6S6 at room temperature.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.202305144",
+    "ms": "all paper ft data/wiley/10.1002_anie.202305144/anie.202305144_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the main application of ZrMOF-1?",
+        "answer": "Water harvesting",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How many carboxylic groups do the ligands H8PEP-1 and H8PEP-2 have?",
+        "answer": "8 carboxylic groups",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the BET surface area of ZrMOF-1?",
+        "answer": "1877 m2 g-1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the water uptake capacity of ZrMOF-1 at P/P0 = 0.90 and 25 °C?",
+        "answer": "0.83 gH2O gMOF-1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main advantage of MOFs over traditional inorganic porous materials for water harvesting?",
+        "answer": "MOFs have programmable structures with tunable pore sizes and high surface areas.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why is ZrMOF-1 considered a promising candidate for water vapor sorption-based applications?",
+        "answer": "Because of its microporous structure, large BET surface area, high water stability, and excellent durability.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What makes ZrMOF-1 and ZrMOF-2 unique in terms of their topology?",
+        "answer": "They have an unprecedented 8,8-c bcu topology.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: ZrMOF-2 has a larger BET surface area than ZrMOF-1.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: ZrMOF-1 maintains its crystallinity after being soaked in water, acid, and base solvents.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The water adsorption-desorption process for ZrMOF-1 is fully reversible.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: ZrMOF-1 has a lower water uptake capacity at P/P0 = 0.90 compared to ZrMOF-2.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The water harvesting performance of ZrMOF-1 is inferior to that of Ni2Cl2BTDD/Co2Cl2BTDD.",
+        "answer": "False",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: ZrMOF-1 can release more than 90% of the adsorbed water within 33 minutes at 333 K.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main challenge that water harvesting from air aims to address?",
+        "answer": "Freshwater scarcity worldwide, particularly in desert and arid regions.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the 8,8-c bcu topology in ZrMOF-1 and ZrMOF-2?",
+        "answer": "It represents a highly connected and unprecedented topology that contributes to their promising water sorption properties.",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Why did the authors choose to use 8-connected quadrangular prism ligands for the synthesis of ZrMOF-1 and ZrMOF-2?",
+        "answer": "To achieve highly stable MOFs with large water uptake capacities and excellent durability for water harvesting.",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The practical atmospheric water harvesting efficiency based on MOFs is highly satisfactory.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the Zr6O4(OH)4(H2O)8 clusters in ZrMOF-1 and ZrMOF-2?",
+        "answer": "They serve as the inorganic nodes for the construction of the bcu nets.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main reason for the high water stability of ZrMOF-1?",
+        "answer": "Its ultrahigh stability is indicated by its ability to maintain crystallinity and microporous structure after long time soak in water, acid, and base solvents.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: ZrMOF-1 and ZrMOF-2 have the same BET surface area.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.202305942",
+    "ms": "all paper ft data/wiley/10.1002_anie.202305942/anie.202305942_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the glass transition temperature of the MOF discussed in the paper?",
+        "answer": "505 K",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used to achieve the glassy state of the MOF?",
+        "answer": "Sequential chemical and thermal perturbation",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the super-cooled liquid state of the MOF be quenched into glass?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What happens to the MOF when heated to a temperature above 558 K?",
+        "answer": "It recrystallizes into the initial MOF structure.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the fragility index of the super-cooled liquid state?",
+        "answer": "105",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the recrystallized MOF identical to the original crystalline MOF?",
+        "answer": "No, it has very similar but some different coordinative environment of metal ion and ligand conformation.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of water adsorption in the MOF's structural transformation?",
+        "answer": "It perturbs the metal coordination sphere and partially breaks the metal-linker bond.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the MOF retain its crystallinity after activation?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the decomposition temperature of the MOF?",
+        "answer": "688 K",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the MOF's backbone inherently flexible?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the primary structural feature of the MOF?",
+        "answer": "Linear trinuclear metal node formed by pyridine and carboxylic acids.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the MOF glass retain porosity?",
+        "answer": "Yes, it retains 45% porosity of the crystalline MOF.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the onset temperature of crystallization (Tx) for the MOF?",
+        "answer": "545 K",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What analysis confirmed the recrystallization process?",
+        "answer": "In situ powder X-ray diffraction (PXRD) analysis.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the MOF's structure stable at high temperatures?",
+        "answer": "Yes, it indicates the thermodynamic stability of the crystalline phase.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the [Mn3(COO)6] node in the MOF?",
+        "answer": "It has a profound structural directing effect for coordinative assembly.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the MOF undergo crystal-amorphous-liquid-crystal transformations?",
+        "answer": "Yes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the MOF's multi-stage transformations?",
+        "answer": "It represents a rare example of high temperature coordinative recognition and self-assembly.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the theoretical pore volume from single crystal structure analysis?",
+        "answer": "0.089 cm3/g",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the MOF's structure change upon dehydration?",
+        "answer": "Yes, it becomes largely amorphous after the perturbation process.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.202306048",
+    "ms": "all paper ft data/wiley/10.1002_anie.202306048/anie.202306048_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the chemical formula of the coordination polymer discussed?",
+        "answer": "[Zn(3,5-DFBA)2(tpeb)]n",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What type of phase transition does the coordination polymer undergo upon UV light irradiation?",
+        "answer": "Single-crystal-to-single-crystal [2+2] cycloaddition reaction",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the space group transformation observed in the coordination polymer upon photoirradiation?",
+        "answer": "From triclinic P-1 to monoclinic C2/c",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What are the potential applications of the coordination polymer?",
+        "answer": "Actuating and photonic devices",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What composite material was fabricated from the coordination polymer for photomechanical behavior study?",
+        "answer": "A composite membrane fabricated from the coordination polymer and polyvinyl alcohol (PVA)",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of light in the phase transition of the coordination polymer?",
+        "answer": "Light acts as an external stimulus to achieve the phase transition without physical contact",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What happens to the coordination polymer's crystals under UV light irradiation?",
+        "answer": "The crystals exhibit rapid shrinking, bending, violent bursting-jumping, splitting, and cracking",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why does the coordination polymer exhibit photomechanical activity?",
+        "answer": "Due to the sudden release of stress associated with strained molecular geometries and significant solid-state molecular movement from cleavage and formation of chemical bonds",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the composite membrane respond to UV light?",
+        "answer": "It displays interesting photomechanical behavior under UV light illumination",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the space group transformation in the coordination polymer?",
+        "answer": "It represents a rare example of symmetry enhancement upon photoirradiation",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the result of the [2+2] photocycloaddition reaction in the coordination polymer?",
+        "answer": "Transformation of two of three pairs of olefinic bonds into cyclobutane units",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What does the photomechanical motion of the coordination polymer's crystals resemble?",
+        "answer": "A creeping nematode",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The coordination polymer discussed is a two-dimensional polymer.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The coordination polymer's photomechanical motion is predictable and uniform across all crystal shapes and sizes.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The coordination polymer undergoes a decrease in symmetry upon photoirradiation.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The coordination polymer can only exhibit photomechanical behavior in its crystalline form.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The coordination polymer's photomechanical motion is solely due to thermal effects.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The composite membrane made from the coordination polymer and PVA bends towards the light source under UV illumination.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: All pairs of olefin bonds in the coordination polymer undergo dimerization upon UV light irradiation.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The coordination polymer's photomechanical motion includes expansion and contraction.",
+        "answer": "True",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1039/D1SC07001K",
+    "ms": "all paper ft data/rsc/D1SC07001K/d1sc07001k_content_list_v3_combined.txt",
+    "si": "all paper ft data/rsc/D1SC07001K/d1sc07001k1_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the purpose of enhancing the photothermal conversion of tetrathiafulvalene-based MOFs?",
+        "answer": "The purpose is to improve their application in photothermal therapy, diagnosis, and imaging by tuning NIR absorption through redox doping and using plasmonic nanoparticles.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used to synthesize m-H4TTFTB?",
+        "answer": "m-H4TTFTB was synthesized according to a previous method.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What technique was used for the iodine doping of I3−@Dy-m-TTFTB?",
+        "answer": "The iodine doping of I3−@Dy-m-TTFTB was undertaken using a diffusion technique.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the yield percentage of Dy-m-TTFTB based on m-H4TTFTB?",
+        "answer": "The yield of Dy-m-TTFTB was 48% based on m-H4TTFTB.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The Ag doping of Ag NPs@Dy-m-TTFTB was performed at high temperature.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the power density range of the laser used in the photothermal conversion tests?",
+        "answer": "The power density of the laser was adjusted between 0.1 and 0.7 W cm−2.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The conductivity of the samples was measured using a two-probe method.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the temperature range observed for Dy-m-TTFTB under 0.7 W cm−2 808 nm laser irradiation?",
+        "answer": "The temperature range observed for Dy-m-TTFTB under 0.7 W cm−2 808 nm laser irradiation was from 22.8 to 90.1°C.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The photothermal conversion of Dy-m-TTFTB showed a significant temperature change under 0.5 W cm−2 808 nm laser irradiation.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the effect of Ag+ treatment on the NIR absorption of Dy-m-TTFTB?",
+        "answer": "The Ag+ treatment enhanced the NIR absorption of Dy-m-TTFTB by transforming the neutral TTF into a TTFc+ radical state and forming Ag nanoparticles in situ within the MOF pores.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The photothermal conversion efficiency of Ag NPs@Dy-m-TTFTB was lower than that of pristine Dy-m-TTFTB.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the maximum temperature increase observed for Ag NPs@Dy-m-TTFTB under 0.7 W cm−2 808 nm laser irradiation?",
+        "answer": "The maximum temperature increase observed for Ag NPs@Dy-m-TTFTB under 0.7 W cm−2 808 nm laser irradiation was 239.8°C.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthesis of Dy-m-TTFTB involved heating the mixture to 140 °C for 48 hours.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the role of CF3COOH in the synthesis of Dy-m-TTFTB?",
+        "answer": "CF3COOH was added to the solution during the synthesis process, likely acting as a catalyst or acid source to facilitate the reaction.",
+        "label": "FN",
+        "grounded": false,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The elemental analyses for C, H, and N were performed using a Perkin-Elmer 240C analyzer.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the purpose of using the SQUEEZE routine in the crystallographic analysis of Dy-m-TTFTB?",
+        "answer": "The SQUEEZE routine was used to remove diffuse electron densities resulting from residual solvent molecules in the crystallographic data of Dy-m-TTFTB.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The PXRD patterns of Dy-m-TTFTB were collected using a Bruker Advance D8 diffractometer.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the role of AgNO3 in the synthesis of Ag NPs@Dy-m-TTFTB?",
+        "answer": "AgNO3 was used in the solution to facilitate the in situ formation of Ag nanoparticles within the Dy-m-TTFTB framework during the doping process.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The SEM images were recorded on a Hitachi S-3400N II microscope.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the significance of the CO2 adsorption isotherms measured at 195 K?",
+        "answer": "The CO2 adsorption isotherms measured at 195 K were used to estimate the porosity and surface area of Dy-m-TTFTB.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1016/j.cej.2022.136532",
+    "ms": "all paper ft data/elsevier/j.cej.2022.136532/10.1016_j.cej.2022.136532_xml_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the purpose of using flexible ligands in the synthesis of MOFs?",
+        "answer": "The purpose of using flexible ligands in the synthesis of MOFs is to expand the pore size for MOFs and to realize antenna effect simultaneously.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the chemical formula of the flexible ligand used in the study?",
+        "answer": "1,3,5-tris(5-methoxy-1,3-benzene dicarboxylic acid)benzene (L1)",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the pore size of L1-Eu MOF?",
+        "answer": "The pore size of L1-Eu MOF is approximately 18 Å.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the density of L1-Eu MOF?",
+        "answer": "The density of L1-Eu MOF is 1.2 g/mL.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the limit of detection (LOD) for PO43- using L1-Eu MOF?",
+        "answer": "The limit of detection (LOD) for PO43- using L1-Eu MOF is 0.183 μM.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the limit of detection (LOD) for ATP using L1-Eu MOF?",
+        "answer": "The limit of detection (LOD) for ATP using L1-Eu MOF is 0.147 μM.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: L1-Eu MOF shows dual-emission under single excitation.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the –CH2-O- group in L1-Eu MOF?",
+        "answer": "The –CH2-O- group tunes the energy transfer for dual-emission at 360 and 623 nm from L1-Eu MOF under single excitation of 290 nm.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The pore size of MOFs does not affect the response speed and range for target detection.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the main advantage of using L1-Eu MOF for the detection of PO43- and ATP?",
+        "answer": "The main advantage of using L1-Eu MOF for the detection of PO43- and ATP is its ability to provide ratiometric sensing and visible detection due to its dual-emission.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja000642m",
+    "ms": "all paper ft data/acs/ja000642m/ja000642m_xml_combined.txt",
+    "si": "all paper ft data/acs/ja000642m/ja000642m_s_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the formula for the compound labeled as 1?",
+        "answer": "[Ag(C14H20N6)(NO3)]",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Which compound is described as a 1-D coordination polymer?",
+        "answer": "Compound 1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the anion-exchange process between compound 1 and 2 reversible?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the coordination number of Ag(I) ion in compound 3?",
+        "answer": "Six",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Which compound has a boxlike 2-D network structure?",
+        "answer": "Compound 3",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the ClO4- anion of compound 3 be exchanged with NO3-?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of ethylenediaminetetrapropionitrile (EDTPN) in the synthesis?",
+        "answer": "EDTPN acts as a ligand to bind Ag(I) ions.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is compound 2 soluble in water?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used for the X-ray diffraction measurements?",
+        "answer": "Single crystals of 1−3 were mounted on an Enraf-Nonius CAD4 diffractometer.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Which compound undergoes an anion-induced transformation of supramolecular structure?",
+        "answer": "All compounds (1, 2, and 3) undergo transformations.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the anion-exchange process from 1 or 2 into 3 irreversible?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the publication year of the article?",
+        "answer": "2000",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Which compound is used as a nitrate-sequestering agent?",
+        "answer": "Compound 2",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the CF3SO3- anion of compound 2 be exchanged with ClO4-?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the general method for synthesizing compounds 1, 2, and 3?",
+        "answer": "Self-assembly of AgX with ethylenediaminetetrapropionitrile (EDTPN) in MeOH.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Which compound has a 2-D layer structure?",
+        "answer": "Compound 2",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the anion-exchange process between compound 2 and 3 reversible?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of anion exchange on the supramolecular structure?",
+        "answer": "It induces transformation of the supramolecular structure.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the crystal of compound 2 maintain its crystallinity after anion exchange?",
+        "answer": "True, although its transparency is lost.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the study's findings?",
+        "answer": "The study demonstrates quantitative anion-exchange in the crystalline state and accompanying supramolecular structural transformations.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja0011156",
+    "ms": "all paper ft data/acs/ja0011156/ja0011156_xml_combined.txt",
+    "si": "all paper ft data/acs/ja0011156/ja0011156_s_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What are the two examples of gold chemistry reported?",
+        "answer": "The two examples are [{Au(SC6H4-p-CMe3)}10], 1, and [{Au(SC6H4-o-CMe3)}12], 2.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the yield percentage for the synthesis of compounds 1 and 2?",
+        "answer": "Over 90% yields.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "From what materials were compounds 1 and 2 recrystallized?",
+        "answer": "Compound 1 was recrystallized from ethoxybenzene and compound 2 from xylene/acetonitrile.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the core structure of compound 1?",
+        "answer": "The core of 1 consists of two interpenetrating pentagons defined by five S atoms and five Au atoms arranged in an alternating pattern.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is unique about the [2]catenane structure found for the Au10S10 core of 1?",
+        "answer": "It has a unique 'spoke' system consisting of a total of nine Au···Au interactions which imparts structural stability.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What prevents the formation of a structural analogue of 1 in compound 2?",
+        "answer": "The bulky tert-butyl substituent in the ortho position of the arene ring prevents the formation.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the structure of compound 2 differ from compound 1?",
+        "answer": "Compound 2's core can also be described as a [2]catenane, but neither of the two interpenetrating hexagons is planar, unlike the planar pentagons in compound 1.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What happens to compound 1 in the presence of triphenylphosphine?",
+        "answer": "It forms [Au(PPh3)SC6H4-p-CMe3], 3, in almost quantitative yield.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why are the proton NMR spectra of compounds 1 and 2 temperature-dependent?",
+        "answer": "Because the aurophilic interactions can lead to associated and dissociated species in solution, affecting the spectra.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the Au···Au interactions in compound 1?",
+        "answer": "They contribute to the structural stability of the compound.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How do the Au−S bond lengths in compound 1 relate to its structural stability?",
+        "answer": "The Au−S bond lengths involving the central atoms are affected by multiple Au···Au interactions, contributing to the compound's stability.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What role do the tert-butyl substituents play in the structure of compound 2?",
+        "answer": "They prevent the formation of a structural analogue of compound 1 by introducing steric hindrance.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the core of compound 1 planar?",
+        "answer": "True",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Are the Au···Au separations in compound 1 longer than those around the periphery?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does compound 2 have a planar hexagonal core?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are secondary Au···S interactions significant in either compound 1 or 2?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the proton NMR spectrum of compound 1 in noncoordinating organic solvents temperature-independent?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Do compounds 1 and 2 dissociate completely in the presence of soft donors?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the [2]catenane structure of compound 1 entirely organic based?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja046351l",
+    "ms": "all paper ft data/acs/ja046351l/ja046351l_xml_combined.txt",
+    "si": "all paper ft data/acs/ja046351l/ja046351l_si_002_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the chemical formula of the compound synthesized in the study?",
+        "answer": "[Co3(NC5H3(CO2)2-2,5)2(μ3-OH)2(OH2)2]",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used for the synthesis of the compound?",
+        "answer": "Solvothermal synthesis",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "At what temperature was the reaction mixture heated during the synthesis?",
+        "answer": "230 ºC",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the yield percentage of the synthesized compound?",
+        "answer": "54%",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of KOH in the synthesis of the compound?",
+        "answer": "KOH acts as a base in the reaction.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the molar ratio of Co:L:OH used in the synthesis?",
+        "answer": "3:2:7",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the compound's magnetic bistability?",
+        "answer": "Magnetic bistability is significant because it indicates the compound could be useful for magnetic recording materials.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the structure of the compound contribute to its magnetic properties?",
+        "answer": "The structure, based on hydroxide-bridged triangular chains, contributes to the compound's unique magnetic behavior, including magnetic bistability.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What analytical technique was used to determine the structure of the synthesized compound?",
+        "answer": "X-ray diffraction analysis",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of cobalt(II) chloride in the synthesis?",
+        "answer": "Cobalt(II) chloride provides the cobalt ions necessary for the compound's structure.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the cooling rate used after heating the reaction mixture?",
+        "answer": "0.10 ºC min-1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthesized compound has a two-dimensional structure.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The magnetic behavior of the compound is consistent with three S = 3/2 ions with moderate antiferromagnetic coupling.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The compound was synthesized using a hydrothermal reaction.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The compound's magnetic susceptibility increases as the measuring field decreases.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The compound shows only one region of magnetic bistability.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The compound's structure includes square-based pyramidal coordination geometry.",
+        "answer": "True",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The compound was cleaned with ethanol after synthesis.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the purpose of using pyridine-2,5-dicarboxylic acid in the synthesis?",
+        "answer": "Pyridine-2,5-dicarboxylic acid acts as a ligand, coordinating with cobalt ions to form the compound's structure.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the presence of different Co(II) environments affect the compound?",
+        "answer": "The different Co(II) environments contribute to the compound's complex magnetic phase behavior and its magnetic bistability.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja071271d",
+    "ms": "all paper ft data/acs/ja071271d/ja071271d_xml_combined.txt",
+    "si": "all paper ft data/acs/ja071271d/ja071271d_si_006_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the purpose of exciplex fluorescence in the study of coordination polymers?",
+        "answer": "Exciplex fluorescence is used as a diagnostic probe of structure in coordination polymers containing intercalated pyrene and enclathrated aromatic solvent guests.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How were the FT-IR spectra obtained for the compounds in the study?",
+        "answer": "The FT-IR spectra were obtained on a Nicolet Avatar 320 FT-IR with a resolution setting of 4 and 64 scans per sample.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the temperature ramp used in the Thermogravimetric Analysis (TGA)?",
+        "answer": "The temperature ramp used in the TGA was 50°C/min up to 1000°C.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What type of X-ray radiation was used in the Powder X-ray Diffraction (PXRD) measurements?",
+        "answer": "Cu Kα (λ = 1.5418 Å) radiation was used in the PXRD measurements.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the exciplex emission be used to differentiate between 1-D ladder and 2-D square grid architectures in coordination polymers?",
+        "answer": "Yes, the exciplex emission can be used diagnostically to indicate the type of architecture obtained in these coordination polymers, with distinctive fluorescence maxima and lifetimes observed for 1-D ladder and 2-D square grid structures.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the exciplex emission from 1-D ladder structures more red-shifted compared to 2-D square grid structures?",
+        "answer": "Yes, the 1-D ladder structures have exciplex emission that is not as strongly red-shifted as the 2-D square grid structures.",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Does the presence of aromatic solvents influence the formation of coordination polymers?",
+        "answer": "Yes, the presence of aromatic solvents influences the formation of coordination polymers, as indicated by the different structures obtained with different solvents.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the excitation spectrum of pyrene in coordination polymers red-shifted compared to pyrene in solution?",
+        "answer": "Yes, the excitation spectrum of pyrene in coordination polymers is red-shifted and relatively broad and featureless compared to pyrene in solution.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the TGA data indicate stability of the coordination polymers up to 1000°C?",
+        "answer": "False, the TGA data does not indicate stability of the coordination polymers up to 1000°C; it was used to analyze the thermal stability under a nitrogen atmosphere.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are the FT-IR spectra of the coordination polymers identical?",
+        "answer": "False, the FT-IR spectra of the coordination polymers show variations, indicating differences in their chemical composition.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the PXRD patterns be used to confirm the crystal structure of the coordination polymers?",
+        "answer": "True, the PXRD patterns can be used to confirm the crystal structure of the coordination polymers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the fluorescence lifetime of the 1-D ladder structures longer than that of the 2-D square grid structures?",
+        "answer": "True, the fluorescence lifetime of the 1-D ladder structures is longer than that of the 2-D square grid structures.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the presence of o-dichlorobenzene lead to the formation of a 1-D ladder architecture?",
+        "answer": "False, the presence of o-dichlorobenzene leads to the formation of a 2-D square grid architecture.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the exciplex emission from compound [5] with o-dichlorobenzene guest significantly blue-shifted compared to other compounds?",
+        "answer": "True, the exciplex emission from compound [5] with o-dichlorobenzene guest is significantly blue-shifted compared to other compounds.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the excitation spectrum of pyrene in coordination polymers indicate the formation of a ground-state charge-transfer complex?",
+        "answer": "True, the excitation spectrum of pyrene in coordination polymers indicates the formation of a ground-state charge-transfer complex.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are the FT-IR spectra used to identify the functional groups present in the coordination polymers?",
+        "answer": "Yes, the FT-IR spectra are used to identify the functional groups present in the coordination polymers.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the TGA data provide information on the thermal decomposition of the coordination polymers?",
+        "answer": "Yes, the TGA data provides information on the thermal decomposition of the coordination polymers.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the PXRD patterns be used to compare the experimental and simulated crystal structures?",
+        "answer": "Yes, the PXRD patterns can be used to compare the experimental and simulated crystal structures of the coordination polymers.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the fluorescence spectroscopy technique critical for understanding the electronic structure of the coordination polymers?",
+        "answer": "Yes, the fluorescence spectroscopy technique is critical for understanding the electronic structure and diagnosing the architecture of the coordination polymers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the study demonstrate the influence of solvent molecules on the structural and fluorescence properties of coordination polymers?",
+        "answer": "Yes, the study demonstrates the influence of solvent molecules on the structural and fluorescence properties of coordination polymers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja2c08717",
+    "ms": "all paper ft data/acs/ja2c08717/ja2c08717_xml_combined.txt",
+    "si": "all paper ft data/acs/ja2c08717/ja2c08717_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the empirical formula of ALP-MOF-1-AS?",
+        "answer": "C21H28N6O9Zn2",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What crystal system does ALP-MOF-1-A belong to?",
+        "answer": "Hexagonal",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "At what temperature range were the Thermogravimetric analyses (TGA) performed?",
+        "answer": "~20 °C to 800 °C",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the density (calculated) of ALP-MOF-2-3H2O?",
+        "answer": "1.020 Mg/m3",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How many independent reflections were collected for ALP-MOF-1-14H2O?",
+        "answer": "5830",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the volume of the unit cell for ALP-MOF-1-acetone?",
+        "answer": "13884.5(10) Å3",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the ALP-MOF-1-A adsorb water from air?",
+        "answer": "Yes, ALP-MOF-2-A readily adsorbs water from air, indicating strong water binding.",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Is the Co(II) in ALP-MOF-2 predicted to have a stronger interaction with water molecules compared to Zn(II) in ALP-MOF-1?",
+        "answer": "Yes, Co(II) is predicted to have a stronger interaction with water than Zn(II).",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the water adsorption capacity of ALP-MOF-2-A decrease after a second water adsorption experiment?",
+        "answer": "Yes, the water adsorption capacity of ALP-MOF-2-A decreases after a second water adsorption experiment.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the calculated density of ALP-MOF-1-A less than 1.0 gcm-3?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does ALP-MOF-1-AS contain solvent accessible voids?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Are the H atoms in guest solvents of ALP-MOFs refined isotropically?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the space group of ALP-MOF-2 R-3?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the ALP-MOF-1-14H2O structure contain disordered guest molecules?",
+        "answer": "False",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "Is the BET surface area of ALP-MOF-2 higher than that of ALP-MOF-1?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the identity of the metal sites in MOFs significantly affect the water uptake profile at low RH?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the Co/Zn ratio in ALP-MOFs determined using SEM-EDS?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja8b07349",
+    "ms": "all paper ft data/acs/ja8b07349/ja8b07349_xml_combined.txt",
+    "si": "all paper ft data/acs/ja8b07349/ja8b07349_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the largest supertetrahedral oxychalcogenide nanocluster reported?",
+        "answer": "T5-InSO",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What unique structure does the T5-InSO nanocluster have?",
+        "answer": "In–O@In–S “core–shell” nanostructure",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used for the synthesis of IOS-1?",
+        "answer": "Solvothermal reaction in mixed solvents of DMF and DBU",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the band gap of IOS-1 as determined by solid-state UV–vis diffuse reflectance spectrum?",
+        "answer": "2.19 eV",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the introduction of oxygen ions affect the stability of T5-InSO NC?",
+        "answer": "It stabilizes the high-valent metal ion at the core site through introducing eight oxygen ions.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of using O-donor ligands in assembling chalcogenide clusters?",
+        "answer": "It introduces a versatile platform for a new generation of semiconducting inorganic–organic hybrid materials.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: IOS-1 exhibits semiconducting properties.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthesis conditions for IOS-1 and IOS-2 are identical.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the space group of IOS-1?",
+        "answer": "P6_3/mmc",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of thiourea in the synthesis of IOS-1?",
+        "answer": "It is a sulfur source for the formation of the oxychalcogenide nanocluster.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: IOS-1 can be exfoliated into nanosheets.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the activation energy of conductivity for IOS-1?",
+        "answer": "0.34 eV",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The assembly of T5-InSO NCs with N-donor imidazolate ligands forms a chiral quartz net.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of doping nonmetal elements into chalcogenide NCs?",
+        "answer": "It can effectively tailor band gap and enhance stability.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: All oxychalcogenide NCs reported so far have the same number of metal sites.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the crystallization solvent for IOS-2?",
+        "answer": "Mixed solvents of organic amines and acetonitrile",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The synthetic strategy for IOS-1 is similar to that for metal–organic frameworks (MOFs).",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the In–O@In–S core–shell structure in T5-InSO NC?",
+        "answer": "It allows for the stabilization of a high-valent In3+ ion at the core site.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The assembly of T5-InSO NCs with O-donor ligands has been previously reported before IOS-1.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the method used for the electrical conductivity measurement of IOS-1?",
+        "answer": "Direct current two-terminal method",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja9b06179",
+    "ms": "all paper ft data/acs/ja9b06179/ja9b06179_xml_combined.txt",
+    "si": "all paper ft data/acs/ja9b06179/ja9b06179_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the chemical formula for Zirconium-based metal-organic frameworks (Zr-MOFs)?",
+        "answer": "Zr-MOFs",
+        "label": "FN",
+        "grounded": false,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "What is the topology of NU-1600?",
+        "answer": "alb",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method is used for the activation of NU-1600?",
+        "answer": "Dynamic vacuum for 12 hours at 120 °C",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the BET surface area of NU-1601?",
+        "answer": "3970 m2 g-1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the experimental pore volume of NU-1602?",
+        "answer": "2.36 cm3 g-1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How is the NU-1600 series MOFs activated?",
+        "answer": "NU-1600 is activated under a dynamic vacuum, while NU-1601 and NU-1602 are activated using supercritical CO2 (ScCO2) procedure followed by dynamic vacuum.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the linker per Zr6 node in NU-1600 based on TGA data?",
+        "answer": "1.2",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the half-life (t1/2) of DMNP hydrolysis with NU-1600 using N-ethylmorpholine?",
+        "answer": "0.7 minutes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the BET area of NU-1601 greater than that of NU-1600?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does NU-1602 have a higher experimental pore volume than NU-1601?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the linker per Zr6 node in NU-1600 less than 2 based on TGA data?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the BET area of NU-1600 less than 3000 m2 g-1?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does NU-1601 use supercritical CO2 (ScCO2) procedure for activation?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the crystallographic density of NU-1602 less than 0.5 g cm-3?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can NU-1600 be activated using supercritical CO2 (ScCO2) procedure?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of increasing the catalyst loading from 1.5 mol% to 6 mol% on the half-life of DMNP hydrolysis with NU-1600?",
+        "answer": "Decreasing the half-life from 3.6 minutes to 0.7 minutes",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the linker per Zr6 node in NU-1601 compared to NU-1600 based on TGA data?",
+        "answer": "NU-1601 has a higher linker per Zr6 node compared to NU-1600",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the experimental BET surface area of NU-1602?",
+        "answer": "4500 m2 g-1",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the topology of NU-1601 and NU-1602?",
+        "answer": "Both have alb topology",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the linker per Zr6 node in NU-1600 indicate missing linker defects?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja9b11336",
+    "ms": "all paper ft data/acs/ja9b11336/ja9b11336_xml_combined.txt",
+    "si": "all paper ft data/acs/ja9b11336/ja9b11336_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What materials were used in the synthesis of CAM-Ag nanofibers and membranes?",
+        "answer": "Melamine, cyanuric acid, silver nitrate, and ammonia solution were used.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How was the concentration of Ag+ determined in the synthesis process?",
+        "answer": "The concentration of Ag+ was determined by inductively coupled plasma optical emission spectrometry (ICP-OES).",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What technique was used to observe the morphology of the samples?",
+        "answer": "Scanning electron microscopy (SEM) and cryogenic transmission electron microscopy (cryo-TEM) were used.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the CAM-Ag membrane capable of being bent over 90 degrees?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the purpose of adding ammonia solution in the synthesis of CAM-Ag nanofibers?",
+        "answer": "Ammonia solution was added to neutralize the excess protons and facilitate the complete transformation of CAM nanorods to CAM-Ag nanofibers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Did the CAM-Ag membrane demonstrate selective light transmission?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the Young's Modulus of the CAM-Ag membrane according to the tensile tests?",
+        "answer": "The average Young's Modulus was 77 ± 10 MPa.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What method was used for single crystal X-ray structure determination of CAM-Ag?",
+        "answer": "Single crystal X-ray diffraction (SCXRD) data was collected on the MX2 beamline at the Australian Synchrotron.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can the CAM-Ag membrane retain its crystal structures up to 150 °C?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the main driving force for the conversion in the synthesis of CAM-Ag nanofibers?",
+        "answer": "The reaction with Ag(I) was the driving force for the conversion, rather than the basic environment.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Was PLATON SQUEEZE used in the refinement of the CAM-Ag crystal structure?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the role of the nanoindentation technique in the study?",
+        "answer": "Nanoindentation was used for mechanical tests of the integral membranes and the single fibers.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the bending stiffness of CAM-Ag fibers according to the three-point bending test?",
+        "answer": "The bending stiffness was determined to be 12.1 N/m for CAM-Ag.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Did the CAM-Ag membrane show almost no transmission in the range of UV, visible, and near-IR light?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the main challenge in solving the crystal structure of CAM-Ag?",
+        "answer": "The crystal displayed pronounced twinning due to the lamellar nature of the fibers, which was a challenge in solving the structure.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Was the crystal structure of CAM-Ag solved in the space group P1?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the empirical formula of the CAM-Ag compound according to the crystal data?",
+        "answer": "The empirical formula was C6H7Ag2N9O3.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the role of silver nitrate in the synthesis of CAM-Ag nanofibers?",
+        "answer": "Silver nitrate provided Ag(I) ions that incorporated into the framework forming coordinate bonds with nitrogen atoms from melamine and cyanuric acid.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Did the synthesis process involve the use of ultrapure water?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the main goal of the study?",
+        "answer": "The main goal was to synthesize a robust, free-standing, centimeter-sized supramolecular membrane through competitive incorporation of Ag(I) into the hydrogen-bonded CAM network.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1038/ncomms3826",
+    "ms": "all paper ft data/nature/ncomms3826/ncomms3826_content_list_v3_combined.txt",
+    "si": "all paper ft data/nature/ncomms3826/41467_2013_BFncomms3826_MOESM806_ESM_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the spin crossover (SCO) effect?",
+        "answer": "The spin crossover (SCO) effect is a reversible transformation between a high-spin (HS) and a low-spin (LS) state in transition metal complexes, often triggered by changes in temperature, pressure, or light irradiation.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What triggers the light-induced excited spin-state trapping (LIESST) effect?",
+        "answer": "The LIESST effect is triggered by light irradiation, which induces conversion of a low-spin (LS) state to a high-spin (HS) state in certain transition metal complexes.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of incorporating Fe(II) SCO units and paramagnetic Fe(III) ions into a chain?",
+        "answer": "Incorporating Fe(II) SCO units and paramagnetic Fe(III) ions into a chain allows for the switching of the bistable state of molecular nanomagnets through external stimuli-tuned spin crossover, potentially enabling information storage at a molecular level.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of cyanide bridges in the described material?",
+        "answer": "Cyanide bridges link Fe(II) and Fe(III) ions into a chain and provide efficient superexchange pathways for strong magnetic interactions.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does light irradiation affect the magnetic properties of the described material?",
+        "answer": "Light irradiation induces a spin transition from diamagnetic Fe(II) LS to paramagnetic Fe(II) HS units, leading to a significant increase in magnetic susceptibility and enabling the switching of single-chain magnet (SCM) behavior.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the observed thermal hysteresis in the described material?",
+        "answer": "The observed thermal hysteresis indicates a reversible and stable spin crossover transition, which is crucial for potential applications in information storage and spintronics.",
+        "label": "FP",
+        "grounded": true,
+        "correct": false,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The described material exhibits single-chain magnet (SCM) behavior only after light irradiation.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the role of the bulky Tp* ligand in the described material?",
+        "answer": "The bulky Tp* ligand is introduced to avoid interchain magnetic interactions, ensuring that the magnetic properties are primarily determined by intrachain interactions.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The described material can erase and write information at a molecular level.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the observed frequency dependence of the ac magnetic susceptibility after light irradiation?",
+        "answer": "The observed frequency dependence of the ac magnetic susceptibility after light irradiation confirms the SCM behavior of the material, indicating that the material's magnetic state can be dynamically controlled.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The described material's magnetization can be increased by irradiation with light and recovered with a thermal treatment.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of dehydration on the magnetic properties of the described material?",
+        "answer": "Dehydration leads to the disappearance of thermally induced spin-crossover behavior and the photoinduced spin transition from LS to HS, suggesting that hydrogen bonds formed with uncoordinated water molecules play a crucial role in the switching of thermal- and photo-induced spin-crossover.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The described material's magnetic properties are unaffected by changes in temperature.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the significance of the Arrhenius fit of peak temperature in the described material?",
+        "answer": "The Arrhenius fit of peak temperature provides insights into the thermal activation energy required for the spin transition, helping to understand the material's response to temperature changes and its potential for thermal control of magnetic properties.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The described material exhibits a complete photoinduced spin transition.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adfm.201203288",
+    "ms": "all paper ft data/wiley/10.1002_adfm.201203288/adfm.201203288_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What method is used to predict multicomponent adsorption behaviors from experimental single-component gas isotherms?",
+        "answer": "Ideal adsorbed solution theory (IAST) is used.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What challenge does the separation of C2 hydrocarbons from CH4 present?",
+        "answer": "The challenge is due to their similar physical and chemical properties, which lead to difficulty for adsorption-based separation.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adfm.202106925",
+    "ms": "all paper ft data/wiley/10.1002_adfm.202106925/adfm.202106925_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What were the humidity levels during the HCl vapor detection experiments?",
+        "answer": "The article does not specify the exact humidity levels maintained during the experiments.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Do all MOFs display magnetic properties?",
+        "answer": "MOFs are generally insulators and do not exhibit magnetic properties.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adma.19900020805",
+    "ms": "all paper ft data/wiley/10.1002_adma.19900020805/adma.19900020805_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "Why is no Knight shift detected for the 7Li nucleus in 1-Li?",
+        "answer": "Because it confirms the purely ionic structure of 1-Li.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the Knight shift in [2,5-DMe-DCNQI]2Tl remain constant across all temperatures?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/adma.202105880",
+    "ms": "all paper ft data/wiley/10.1002_adma.202105880/adma.202105880_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "How does the activation temperature affect the adsorption properties of Cu-F-pymo?",
+        "answer": "Activation at elevated temperature increases the BET surface area and C2H2 uptake, but reduces CO2-selectivity.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Why does Cu-F-pymo have a high selectivity for CO2 over C2H2?",
+        "answer": "The high selectivity is attributed to the suppression of C2H2 adsorption from the blockage of the preferential sites for C2H2 by residual water molecules.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.200600553",
+    "ms": "all paper ft data/wiley/10.1002_anie.200600553/anie.200600553_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "How stable is crystal 1 over extended periods?",
+        "answer": "Information on the long-term stability of the materials is not provided.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the crystal structure of 1 change significantly under high pressure?",
+        "answer": "The text does not provide specific details on structural changes under high pressure, only the resistivity behavior.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the composition of the high-conductivity crystal 1?",
+        "answer": "[{Cu(TANC)}F0.5]n",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.201100880",
+    "ms": "all paper ft data/wiley/10.1002_anie.201100880/anie.201100880_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What are some applications of MOFs?",
+        "answer": "MOFs can be used for gas storage and separation.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the typical yield of the synthesis of compound 1?",
+        "answer": "The synthesis yield for compound 1 is not mentioned in this abstract.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.201408369",
+    "ms": "all paper ft data/wiley/10.1002_anie.201408369/anie.201408369_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "Were any gases other than CO2 tested for adsorption?",
+        "answer": "Information on other gases tested is not available in the provided abstract.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the BET surface area of Sc2(BDC-NH2)3?",
+        "answer": "The specific surface area of the MOF is not mentioned in this abstract.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The diffusion of CO2 in Sc2(BDC-NH2)3 is too fast to determine adsorbate diffusivities using IR microspectroscopy.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How does the orientation of adsorbed CO2 molecules within the pores of Sc2(BDC-NH2)3 compare to the net CPh-N vector?",
+        "answer": "The CO2 molecules are aligned more closely to the channel axis than the net CPh-N vector.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.201509761",
+    "ms": "all paper ft data/wiley/10.1002_anie.201509761/anie.201509761_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "True or False: The specific rotation values for isolated elatenyne were consistent across different samples.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the purpose of using the crystalline sponge method in this study?",
+        "answer": "To unequivocally determine the absolute configuration of elatenyne.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.201701303",
+    "ms": "all paper ft data/wiley/10.1002_anie.201701303/anie.201701303_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What does the formation of insoluble precipitates indicate about the complexation process?",
+        "answer": "It suggests that the mismatch between the N···N distance in the guest and Ga···Ga distance in the host leads to ill-defined products.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Who are the authors of the paper?",
+        "answer": "Jan Horstmann, Mentor Hyseni, Andreas Mix, Beate Neumann, Hans-Georg Stammler, and Norbert W. Mitzel",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1002/anie.202307646",
+    "ms": "all paper ft data/wiley/10.1002_anie.202307646/anie.202307646_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "True or False: The SHG intensity of the 3D bromide phases is comparable with that of KDP at small particle size range.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How are the 15 new double perovskite derived halides synthesized?",
+        "answer": "Via solution methods using organic cationic ligands, RbNO3/KBr, and Bi2O3 mixed in aqueous HBr/HI and heated to boil.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1039/C3CC42741B",
+    "ms": "all paper ft data/rsc/C3CC42741B/c3cc42741b_content_list_v3_combined.txt",
+    "si": "all paper ft data/rsc/C3CC42741B/c3cc42741b1_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the BET surface area of these materials?",
+        "answer": "Information on the specific surface area is not provided in the context.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How expensive is it to synthesize these compounds?",
+        "answer": "The article does not mention the cost of the synthesis.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1039/C3CC48595A",
+    "ms": "all paper ft data/rsc/C3CC48595A/c3cc48595a_content_list_v3_combined.txt",
+    "si": "all paper ft data/rsc/C3CC48595A/c3cc48595a1_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "Is bpb a green ligand?",
+        "answer": "Bpb is a non-toxic and environmentally friendly ligand.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1039/D3DT00635B",
+    "ms": "all paper ft data/rsc/D3DT00635B/d3dt00635b_content_list_v3_combined.txt",
+    "si": "all paper ft data/rsc/D3DT00635B/d3dt00635b1_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What was the role of triethylamine in the synthesis of JMS-6?",
+        "answer": "It was mixed with 2,2'-bipyridyl-4,4'-dicarboxylic acid and DMF before adding Nd(NO3)3·6H2O",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The total weight loss during thermal analysis of JMS-6 and JMS-7 is the same.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1038/NMAT2474",
+    "ms": "all paper ft data/nature/NMAT2474/nmat2474_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "How does temperature universally affect ionic conductivity in polymer electrolytes?",
+        "answer": "Increasing temperature always increases ionic conductivity in polymer electrolytes.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the humidity level maintained during material synthesis?",
+        "answer": "The authors do not provide the humidity level maintained during the synthesis.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1038/ccschem.020.202000630",
+    "ms": "all paper ft data/ccs/ccschem.020.202000630/hou-et-al-2021-stepwise-construction-of-multivariate-metal-organic-frameworks-from-a-predesigned-zr16-cluster_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the role of lanthanides in the construction of [Zr16-BPDC-Ln] MOFs?",
+        "answer": "Lanthanides are used to install in the cavity between [Zr16-BPDC] layers, further interconnecting them into 3D frameworks.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The [Zr16-BPDC-Eu0.8Tb0.2] MOF exhibits temperature-dependent luminescent behavior due to the presence of both Eu and Tb ions.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1016/j.chempr.2019.10.022",
+    "ms": "all paper ft data/elsevier/j.chempr.2019.10.022/10.1016_j.chempr.2019.10.022_xml_combined.txt",
+    "si": "all paper ft data/elsevier/j.chempr.2019.10.022/mmc1_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "Were any other transition metals incorporated into the MOF frameworks?",
+        "answer": "The context doesn't mention whether other transition metals besides gold were tested for incorporation into the MOFs.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Was nitrogen physisorption used to characterize the MOFs?",
+        "answer": "The text doesn't mention the use of characterization techniques like nitrogen physisorption.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja00086a077",
+    "ms": "all paper ft data/acs/ja00086a077/ja00086a077_si_001_content_list_v3_combined.txt",
+    "si": "all paper ft data/acs/ja00086a077/ja3173_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "True or False: The crystal system is cubic.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The final cycle of refinement was based on 1435 observed reflections.",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja00211a017",
+    "ms": "all paper ft data/acs/ja00211a017/ja00211a017_si_001_content_list_v3_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the impact factor of the journal?",
+        "answer": "The journal's impact factor is 15.5.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja039104a",
+    "ms": "all paper ft data/acs/ja039104a/ja039104a_xml_combined.txt",
+    "si": "all paper ft data/acs/ja039104a/ja039104a_si_002_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the main focus of the research article?",
+        "answer": "The main focus of the research article is on the synthesis of chiral azido-bridged coordination polymers using diazine ligands, their spontaneous resolution, weak ferromagnetism, and topological ferrimagnetism.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the article focused on the development of polyfunctional materials combining magnetism and optical activity?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja039914m",
+    "ms": "all paper ft data/acs/ja039914m/ja039914m_xml_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What is the role of complementary hydrogen bonds in the structure of the synthesized coordination polymers?",
+        "answer": "The role of complementary hydrogen bonds in the structure of the synthesized coordination polymers is to connect the square grid motifs in a staggered fashion, contributing to the formation of the porous framework and enabling structural transformation.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How do the synthesized coordination polymers form their porous structures?",
+        "answer": "The synthesized coordination polymers form their porous structures through square grids that are connected by complementary hydrogen bonds between amide groups, avoiding interpenetration and allowing for the formation of micropores.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja042877u",
+    "ms": "all paper ft data/acs/ja042877u/ja042877u_xml_combined.txt",
+    "si": "all paper ft data/acs/ja042877u/ja042877u_si_004_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the shelf life of alkali DNM salts?",
+        "answer": "The article does not specify the shelf life of DNM salts.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What are some potential applications of DNM salts?",
+        "answer": "Gas storage and separation",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja048624i",
+    "ms": "all paper ft data/acs/ja048624i/ja048624i_xml_combined.txt",
+    "si": "all paper ft data/acs/ja048624i/ja048624i_si_003_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "Does the copper chain polymer exhibit magnetic behavior?",
+        "answer": "Magnetic properties are not mentioned in the context.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "How expensive are the starting materials?",
+        "answer": "The cost of the materials is not discussed in the context.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja050451p",
+    "ms": "all paper ft data/acs/ja050451p/ja050451p_xml_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "Does the synthesis of compound III involve hydrolysis?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What solvent is used in the synthesis of compound Ia?",
+        "answer": "Benzaldehyde and toluene",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja054900x",
+    "ms": "all paper ft data/acs/ja054900x/ja054900x_xml_combined.txt",
+    "si": "all paper ft data/acs/ja054900x/ja054900x_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "How expensive is MIL-88 to produce?",
+        "answer": "The cost-effectiveness of synthesizing MIL-88 is not discussed.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Can MIL-88 adsorb a variety of polar solvents?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the swelling of MIL-88 result in a change in its crystal system?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja055376x",
+    "ms": "all paper ft data/acs/ja055376x/ja055376x_xml_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "What determines the optical properties of the materials in the study?",
+        "answer": "The optical properties of the materials are determined by the size of the semiconducting nanoclusters used as building blocks.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Under what conditions were all the materials reported in the study synthesized?",
+        "answer": "All materials were synthesized under solvothermal conditions between 85 and 150 °C.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja060666e",
+    "ms": "all paper ft data/acs/ja060666e/ja060666e_xml_combined.txt",
+    "si": "all paper ft data/acs/ja060666e/ja060666e_si_006_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What does the presence of a single peak in the hypersensitive transition of dehydrated compound 2 suggest?",
+        "answer": "The presence of a single peak in the hypersensitive transition of dehydrated compound 2 suggests a slight distortion from an ideal symmetry.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the emission spectrum of compound 2 change significantly upon dehydration?",
+        "answer": "No, the emission spectrum of compound 2 remains remarkably similar upon dehydration, suggesting only minor rearrangements of the ligands around the metal.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja064152r",
+    "ms": "all paper ft data/acs/ja064152r/ja064152r_xml_combined.txt",
+    "si": "",
+    "QA pairs": [
+      {
+        "question": "Are the crystal structures of compounds 1, 2, and 3 based on a repeated rhomboid-type chain motif?",
+        "answer": "Yes, the crystal structures of compounds 1, 2, and 3 are based on a repeated rhomboid-type chain motif.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does compound 2 ⊃ 2Me2CO immediately decompose at room temperature?",
+        "answer": "Yes, the as-prepared sample of compound 2 ⊃ 2Me2CO immediately decomposes at room temperature.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja064601n",
+    "ms": "all paper ft data/acs/ja064601n/ja064601n_xml_combined.txt",
+    "si": "all paper ft data/acs/ja064601n/ja064601n_si_005_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the precise volume of THF required for the reaction?",
+        "answer": "The exact amount of THF used in each reaction is not specified.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the economic feasibility of this reaction for industrial applications?",
+        "answer": "The cost of the reagents makes this reaction impractical on a large scale.",
+        "label": "TN",
+        "grounded": false,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What computational method was used for the theoretical analysis in the study?",
+        "answer": "The hybrid density functional method based on Becke's three-parameter exchange function and the Lee-Yang-Parr nonlocal correlation functional (B3LYP) was used.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What was the significance of the in situ FT-IR spectroscopic monitoring in the study?",
+        "answer": "The in situ FT-IR spectroscopic monitoring was significant for observing the interaction between the aluminum ate base i-Bu3Al(TMP)Li and the aromatic substrate, providing insight into the reaction mechanism and complex formation.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja068436n",
+    "ms": "all paper ft data/acs/ja068436n/ja068436n_xml_combined.txt",
+    "si": "all paper ft data/acs/ja068436n/ja068436n_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "Is the space group of Na2[Ru(bipy)(CN)4]•(H2O)9 P2(1)/n?",
+        "answer": "True",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Is the bond distance between Ru(1) and N(1) in K2[Ru(bipy)(CN)4]•(H2O)3 shorter than in Ba[Ru(bipy)(CN)4]•(H2O)6?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja0751734",
+    "ms": "all paper ft data/acs/ja0751734/ja0751734_xml_combined.txt",
+    "si": "all paper ft data/acs/ja0751734/ja0751734_si_002_content_list_v3_combined.txt\nall paper ft data/acs/ja0751734/ja0751734_si_004_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the crystal system of [Mn(TPP)O2PHPh]·H2O?",
+        "answer": "Monoclinic",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "What is the effect of the magnetic field on the relaxation time in [Mn(TPP)O2PHPh]·H2O?",
+        "answer": "The application of a static magnetic field of 1 kOe has no sizable effects on the dynamic parameters.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja0c03063",
+    "ms": "all paper ft data/acs/ja0c03063/ja0c03063_xml_combined.txt",
+    "si": "all paper ft data/acs/ja0c03063/ja0c03063_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What role does the metal-organic framework play in the study's molecular system?",
+        "answer": "The metal-organic framework serves as a structural scaffold that organizes the molecular motors and porphyrin photosensitizers in close proximity, facilitating efficient energy transfer and enabling the light-driven rotation of the motors in a controlled manner.",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "True or False: The study's findings are limited to theoretical predictions and have not been experimentally verified.",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  },
+  {
+    "doi": "10.1021/ja0c13005",
+    "ms": "all paper ft data/acs/ja0c13005/ja0c13005_xml_combined.txt",
+    "si": "all paper ft data/acs/ja0c13005/ja0c13005_si_001_content_list_v3_combined.txt",
+    "QA pairs": [
+      {
+        "question": "What is the enantioselectivity factor (EF) for 1-MONs-MMM with (−)-linalool?",
+        "answer": "9.03",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      },
+      {
+        "question": "Does the fluorescence lifetime of 1-MONs-MMM change significantly upon exposure to (+)- and (−)-limonene?",
+        "answer": "False",
+        "label": "TP",
+        "grounded": true,
+        "correct": true,
+        "human_verified": true
+      }
+    ]
+  }
+]

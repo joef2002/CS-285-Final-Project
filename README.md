@@ -6,6 +6,8 @@ Supervised fine-tuning of **Qwen3.5-4B** (4-bit LoRA) on chemistry question-answ
 
 ```
 sft_train.py          # SFT training script (LoRA, 4-bit, HF Trainer)
+ppo_train.py          # PPO training from SFT adapter (class-balanced reward)
+ppo_eval.py           # Parse-aware evaluator metrics for TP/TN/FP/FN
 modal_train.py        # Modal cloud GPU launcher (H100 × 4, DDP)
 pyproject.toml        # Dependencies and project metadata
 training_set.json     # Source training data (241 papers, 8,986 QA pairs)
@@ -37,6 +39,57 @@ from transformers import AutoTokenizer
 model = AutoPeftModelForCausalLM.from_pretrained("final_adapter/final_adapter", device_map="auto")
 tokenizer = AutoTokenizer.from_pretrained("final_adapter/final_adapter")
 ```
+
+## PPO from SFT (TP/TN/FP/FN evaluator)
+
+This repo now includes a PPO entrypoint (`ppo_train.py`) that initializes from your SFT LoRA adapter and optimizes a class-balanced reward on final label correctness.
+
+### PPO reward design
+
+- **Format reward:** parsed output is valid JSON with `grounded`, `correct`, and `evaluation`.
+- **Consistency reward:** `(grounded, correct)` matches `evaluation` (`TP`/`TN`/`FP`/`FN` mapping).
+- **Label reward:** predicted `evaluation` matches the gold label; weighted by inverse-frequency class weights to upweight rare classes.
+
+### Run PPO training
+
+Install dependencies (including `trl`) and run:
+
+```bash
+uv sync --extra remote
+python ppo_train.py \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --sft_adapter_path final_adapter/final_adapter \
+  --training_set_path training_set.json \
+  --paper_root "/absolute/path/to/retchemqa/root" \
+  --output_dir runs/ppo_from_sft \
+  --total_ppo_updates 1200 \
+  --batch_size 8 \
+  --mini_batch_size 2 \
+  --learning_rate 1e-6 \
+  --eval_every 100
+```
+
+Notes:
+
+- `--paper_root` must point to the directory that contains the files referenced by `ms` and `si` in `training_set.json`.
+- Data split is by DOI (paper-level) to reduce leakage.
+
+### Evaluate PPO checkpoint
+
+```bash
+python ppo_eval.py \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --adapter_path runs/ppo_from_sft/final_adapter \
+  --test_path test_qwen.jsonl \
+  --output_path runs/ppo_from_sft/test_predictions.jsonl
+```
+
+This reports:
+
+- accuracy
+- macro-F1
+- parse rate
+- per-class precision/recall for TP/TN/FP/FN
 
 ---
 

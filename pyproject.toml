@@ -18,10 +18,20 @@ remote = [
   "torch>=2.5,<2.7",
   "transformers>=4.57.0",
   "peft>=0.13.0",
+  "trl>=0.12.0",
   "datasets>=2.19.0",
   "tqdm>=4.66.0",
   "wandb>=0.16.0",
   "numpy<2.0",
   "bitsandbytes>=0.43.0",
   "accelerate>=0.30.0",
+]
+
+[tool.setuptools]
+py-modules = [
+  "sft_train",
+  "sft_eval",
+  "modal_train",
+  "ppo_train",
+  "ppo_eval",
 ]

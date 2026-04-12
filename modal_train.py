@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import os
+import re
+import select
 import subprocess
+import time
 from pathlib import Path
 
 import modal
@@ -226,20 +229,126 @@ def _assert_wandb_credentials_available_if_needed(args: tuple[str, ...] | list[s
         )
 
 
+def _format_duration(seconds: float) -> str:
+    total = max(0, int(seconds))
+    h, rem = divmod(total, 3600)
+    m, s = divmod(rem, 60)
+    return f"{h:02d}:{m:02d}:{s:02d}"
+
+
+def _extract_total_updates_from_cmd(cmd: list[str]) -> tuple[int | None, str | None]:
+    patterns = (
+        ("--total_grpo_updates", "grpo_step"),
+        ("--total_ppo_updates", "ppo_update"),
+    )
+    for flag, kind in patterns:
+        i = 0
+        while i < len(cmd):
+            tok = cmd[i]
+            if tok == flag and i + 1 < len(cmd):
+                try:
+                    return int(cmd[i + 1]), kind
+                except ValueError:
+                    return None, None
+            if tok.startswith(f"{flag}="):
+                try:
+                    return int(tok.split("=", 1)[1]), kind
+                except ValueError:
+                    return None, None
+            i += 1
+    return None, None
+
+
+def _parse_progress_update(line: str, kind: str | None) -> int | None:
+    if kind == "grpo_step":
+        m = re.search(r"\[step\s+(\d+)\]", line)
+        return int(m.group(1)) if m else None
+    if kind == "ppo_update":
+        m = re.search(r"\[update\s+(\d+)\]", line)
+        return int(m.group(1)) if m else None
+    return None
+
+
 def _run_subprocess_with_periodic_volume_commits(
     cmd: list[str], *, extra_env: dict[str, str] | None = None
 ) -> None:
     env = dict(os.environ)
     if extra_env:
         env.update(extra_env)
-    proc = subprocess.Popen(cmd, cwd=PROJECT_DIR, env=env)
+
+    total_updates, progress_kind = _extract_total_updates_from_cmd(cmd)
+    start_ts = time.monotonic()
+    last_status_ts = start_ts
+    last_committed_elapsed = 0.0
+    print(
+        f"[modal][timing] started cmd with commit interval={DEFAULT_VOLUME_COMMIT_INTERVAL_SECONDS}s"
+        + (
+            f"; tracking progress for {total_updates} updates"
+            if total_updates is not None
+            else ""
+        )
+    )
+
+    proc = subprocess.Popen(
+        cmd,
+        cwd=PROJECT_DIR,
+        env=env,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1,
+    )
+    if proc.stdout is None:
+        raise RuntimeError("Failed to capture subprocess stdout for timing estimation.")
+
+    latest_update: int | None = None
     returncode: int | None = None
     try:
         while returncode is None:
-            try:
-                returncode = proc.wait(timeout=DEFAULT_VOLUME_COMMIT_INTERVAL_SECONDS)
-            except subprocess.TimeoutExpired:
+            ready, _, _ = select.select([proc.stdout], [], [], DEFAULT_VOLUME_COMMIT_INTERVAL_SECONDS)
+            if ready:
+                line = proc.stdout.readline()
+                if line:
+                    print(line, end="")
+                    progress_update = _parse_progress_update(line, progress_kind)
+                    if progress_update is not None:
+                        latest_update = progress_update
+                        elapsed = time.monotonic() - start_ts
+                        if elapsed > 0 and total_updates and latest_update >= 1:
+                            rate = latest_update / elapsed
+                            remaining_updates = max(total_updates - latest_update, 0)
+                            eta_seconds = remaining_updates / max(rate, 1e-9)
+                            print(
+                                "[modal][timing] "
+                                f"progress={latest_update}/{total_updates} "
+                                f"elapsed={_format_duration(elapsed)} "
+                                f"eta={_format_duration(eta_seconds)}"
+                            )
+                else:
+                    returncode = proc.poll()
+            else:
+                elapsed = time.monotonic() - start_ts
                 volume.commit()
+                last_committed_elapsed = elapsed
+                if elapsed - last_status_ts >= DEFAULT_VOLUME_COMMIT_INTERVAL_SECONDS:
+                    msg = f"[modal][timing] heartbeat elapsed={_format_duration(elapsed)}"
+                    if total_updates is not None and latest_update is not None and latest_update > 0:
+                        rate = latest_update / elapsed
+                        remaining_updates = max(total_updates - latest_update, 0)
+                        eta_seconds = remaining_updates / max(rate, 1e-9)
+                        msg += (
+                            f" progress={latest_update}/{total_updates}"
+                            f" eta={_format_duration(eta_seconds)}"
+                        )
+                    print(msg)
+                    last_status_ts = elapsed + start_ts
+
+            if returncode is None:
+                returncode = proc.poll()
+
+        # Drain any buffered output after process exits.
+        for line in proc.stdout:
+            print(line, end="")
     finally:
         if proc.poll() is None:
             proc.terminate()
@@ -249,6 +358,11 @@ def _run_subprocess_with_periodic_volume_commits(
                 proc.kill()
                 proc.wait(timeout=10)
         volume.commit()
+
+    total_elapsed = time.monotonic() - start_ts
+    print(
+        f"[modal][timing] finished returncode={returncode} elapsed={_format_duration(total_elapsed)}"
+    )
 
     if returncode != 0:
         raise subprocess.CalledProcessError(returncode, cmd)
@@ -263,6 +377,11 @@ image = (
 # Ensure CUDA-enabled torch inside the uv venv for H100 runs.
 image = image.run_commands(
     "/.uv/uv pip install --python /.uv/.venv/bin/python --index-url https://download.pytorch.org/whl/cu124 'torch>=2.5,<2.7'"
+)
+
+# FlashAttention 2 is used by GRPO/PPO on H100 when available.
+image = image.run_commands(
+    "/.uv/uv pip install --python /.uv/.venv/bin/python --no-build-isolation 'flash-attn>=2.6,<3'"
 )
 
 if NETRC_PATH.is_file():

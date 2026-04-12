@@ -213,8 +213,8 @@ all paper ft data/
 .venv/
 .DS_Store
 # Keep this file available for Modal PPO runs (path: /root/project/training_qwen.jsonl)
-# training_qwen.jsonl
+training_qwen.jsonl
 *.safetensors
 final_adapter/final_adapter/tokenizer.json
-!final_adapter/final_adapter/adapter_model.safetensors
-!final_adapter/final_adapter/tokenizer.json
+final_adapter/final_adapter/adapter_model.safetensors
+final_adapter/final_adapter/tokenizer.json

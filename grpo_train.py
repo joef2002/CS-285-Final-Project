@@ -75,8 +75,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--max_context_chars", type=int, default=4000)
     p.add_argument("--max_prompt_tokens", type=int, default=512)
     p.add_argument("--max_new_tokens", type=int, default=128)
-    p.add_argument("--temperature", type=float, default=0.2)
-    p.add_argument("--top_p", type=float, default=0.8)
+    p.add_argument("--temperature", type=float, default=0.5)
+    p.add_argument("--top_p", type=float, default=0.9)
     p.add_argument("--logprob_batch_size", type=int, default=2)
 
     # GRPO
@@ -90,6 +90,16 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--mini_batch_size", type=int, default=1)
     p.add_argument("--learning_rate", type=float, default=1e-6)
     p.add_argument("--gradient_accumulation_steps", type=int, default=1)
+    p.add_argument(
+        "--attn_implementation",
+        type=str,
+        default="auto",
+        choices=["auto", "sdpa", "flash_attention_2"],
+        help=(
+            "Attention backend for model loading. 'auto' prefers flash_attention_2 "
+            "when flash-attn is installed, otherwise falls back to sdpa."
+        ),
+    )
 
     # Reward
     p.add_argument("--reward_format_weight", type=float, default=0.3)
@@ -98,7 +108,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--class_balance_alpha", type=float, default=0.5)
 
     # Logging / eval
-    p.add_argument("--log_every", type=int, default=10)
+    p.add_argument("--log_every", type=int, default=1)
     p.add_argument("--eval_every", type=int, default=100)
     p.add_argument("--eval_max_examples", type=int, default=256)
 
@@ -548,6 +558,12 @@ def collect_group_rollouts(
             is_parsed_ok = parsed is not None and str(parsed.get("evaluation", "")).upper() in LABELS
             reward_value, metrics = reward_for_prediction(parsed, example, weights, args)
 
+            # if parsed is not None and prompt_index == 0 and len(grouped_samples[prompt_index]) < 2:
+            #     print("GOLD:", example.evaluation)
+            #     print("PRED:", parsed.get("evaluation"))
+            #     print("METRICS:", metrics)
+            #     print("REWARD:", reward_value)
+
             reward_groups[prompt_index].append(reward_value)
             reward_breakdown["reward_sum"] += reward_value
             reward_breakdown["format"] += metrics["format"]
@@ -727,6 +743,21 @@ def _validate_sft_adapter_path_or_raise(path_value: str) -> None:
         )
 
 
+def _resolve_attn_implementation(requested: str) -> str:
+    if requested != "auto":
+        return requested
+
+    if not torch.cuda.is_available():
+        return "sdpa"
+
+    try:
+        import flash_attn  # noqa: F401
+
+        return "flash_attention_2"
+    except Exception:
+        return "sdpa"
+
+
 def train(args: argparse.Namespace) -> None:
     from peft import PeftModel
     from torch.optim import AdamW
@@ -780,20 +811,40 @@ def train(args: argparse.Namespace) -> None:
     )
 
     print("Loading 4-bit base model ...")
+    resolved_attn_impl = _resolve_attn_implementation(args.attn_implementation)
+    print(f"Using attention backend: {resolved_attn_impl}")
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_quant_type="nf4",
         bnb_4bit_compute_dtype=torch.bfloat16,
         bnb_4bit_use_double_quant=True,
     )
-    base_model = AutoModelForCausalLM.from_pretrained(
-        args.model_name_or_path,
-        quantization_config=bnb_config,
-        torch_dtype=torch.bfloat16,
-        trust_remote_code=True,
-        attn_implementation="sdpa",
-        device_map="auto",
-    )
+    try:
+        base_model = AutoModelForCausalLM.from_pretrained(
+            args.model_name_or_path,
+            quantization_config=bnb_config,
+            torch_dtype=torch.bfloat16,
+            trust_remote_code=True,
+            attn_implementation=resolved_attn_impl,
+            device_map="auto",
+        )
+    except Exception as exc:
+        if resolved_attn_impl != "flash_attention_2":
+            raise
+        if args.attn_implementation != "auto":
+            raise
+        print(
+            "[warning] flash_attention_2 load failed in auto mode; falling back to sdpa. "
+            f"Original error: {type(exc).__name__}: {exc}"
+        )
+        base_model = AutoModelForCausalLM.from_pretrained(
+            args.model_name_or_path,
+            quantization_config=bnb_config,
+            torch_dtype=torch.bfloat16,
+            trust_remote_code=True,
+            attn_implementation="sdpa",
+            device_map="auto",
+        )
 
     print(f"Loading SFT adapter from {args.sft_adapter_path} ...")
     _validate_sft_adapter_path_or_raise(args.sft_adapter_path)

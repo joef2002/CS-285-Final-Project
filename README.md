@@ -132,6 +132,115 @@ If you use `--training_set_path` mode and `--paper_root` is wrong, PPO logs show
 
 ---
 
+## GRPO from SFT (Group Relative Policy Optimization)
+
+This repo also includes a GRPO entrypoint (`grpo_train.py`) that initializes from your SFT LoRA adapter and optimizes a grouped objective over multiple sampled completions per prompt.
+
+### GRPO objective and reward design
+
+- **Grouped sampling:** for each prompt, sample `group_size` completions.
+- **Relative advantages:** rewards are normalized within each prompt group (mean/std), then used as per-sample advantages.
+- **Clipped policy update:** GRPO uses a PPO-style clipped objective (`--grpo_clip_range`) over sequence log-probs.
+- **Adaptive KL penalty:** KL coefficient is adjusted toward `--target_kl` from `--init_kl_coef`.
+- **Reward components:** same parse-aware/class-balanced signal family as PPO:
+  - format reward (valid JSON schema)
+  - consistency reward (`grounded`/`correct` agrees with `evaluation`)
+  - label reward (class-balanced TP/TN/FP/FN correctness)
+
+### Run GRPO training
+
+Install dependencies and run:
+
+```bash
+uv sync --extra remote
+python grpo_train.py \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --sft_adapter_path final_adapter/final_adapter \
+  --training_qwen_path training_qwen.jsonl \
+  --output_dir runs/grpo_from_sft \
+  --total_grpo_updates 1200 \
+  --batch_size 1 \
+  --group_size 4 \
+  --mini_batch_size 1 \
+  --grpo_epochs 1 \
+  --logprob_batch_size 1 \
+  --max_prompt_tokens 512 \
+  --max_new_tokens 128 \
+  --max_context_chars 1500 \
+  --learning_rate 1e-6 \
+  --eval_every 100
+```
+
+Notes:
+
+- Preferred path: use `--training_qwen_path training_qwen.jsonl` (context already embedded, no MS/SI file lookup needed).
+- If you use `--training_set_path` instead, `--paper_root` must point to the directory that contains files referenced by `ms` and `si`.
+- `--sft_adapter_path` must point to a real adapter checkpoint containing `adapter_model.safetensors` (or `.bin`), not config-only files.
+- GRPO defaults to a single visible GPU (`CUDA_VISIBLE_DEVICES=0`) for rollout/update stability and lower memory pressure.
+
+### Evaluate GRPO checkpoint
+
+```bash
+python grpo_eval.py \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --adapter_path runs/grpo_from_sft/final_adapter \
+  --test_path test_qwen.jsonl \
+  --output_path runs/grpo_from_sft/test_predictions.jsonl
+```
+
+This reports:
+
+- accuracy
+- macro-F1
+- parse rate
+- per-class precision/recall for TP/TN/FP/FN
+
+### Run GRPO on Modal (`python3`)
+
+`modal_train.py` includes `grpo_remote` and `grpo_eval_remote` for GPU runs.
+
+Recommended: run GRPO from `training_qwen.jsonl` (no raw corpus mount needed).
+Legacy option: `training_set.json` stores `ms`/`si` as relative paths like `all paper ft data/...`; since `.gitignore` excludes that folder, copy corpus to Modal volume and set `--paper_root /vol`.
+
+Before training, verify path mapping with:
+
+```bash
+uv run modal run modal_train.py::grpo_data_check_remote -- \
+  --training_qwen_path /root/project/training_qwen.jsonl \
+  --sample_papers 50
+```
+
+```bash
+# 1) Train GRPO on Modal (uses python3 inside container)
+uv run modal run modal_train.py::grpo_remote -- \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --sft_adapter_path /root/project/final_adapter/final_adapter \
+  --training_qwen_path /root/project/training_qwen.jsonl \
+  --output_dir /vol/runs/grpo_from_sft \
+  --total_grpo_updates 1200 \
+  --batch_size 1 \
+  --group_size 4 \
+  --mini_batch_size 1 \
+  --grpo_epochs 1 \
+  --logprob_batch_size 1 \
+  --max_prompt_tokens 512 \
+  --max_new_tokens 128 \
+  --max_context_chars 1500 \
+  --learning_rate 1e-6 \
+  --eval_every 100
+
+# 2) Evaluate GRPO adapter on test_qwen
+uv run modal run modal_train.py::grpo_eval_remote -- \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --adapter_path /vol/runs/grpo_from_sft/final_adapter \
+  --test_path /root/project/test_qwen.jsonl \
+  --output_path /vol/runs/grpo_from_sft/test_predictions.jsonl
+```
+
+If you use `--training_set_path` mode and `--paper_root` is wrong, GRPO logs show many skipped papers due to unreadable MS/SI context.
+
+---
+
 ## Dataset structure and statistics
 
 ### `training_qwen.jsonl`

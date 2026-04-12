@@ -4,14 +4,19 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
+import os
 import random
 import re
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+# Keep PPO execution on a single visible GPU by default.
+os.environ.setdefault("CUDA_VISIBLE_DEVICES", "0")
 
 import torch
 from tqdm import tqdm
@@ -50,6 +55,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--model_name_or_path", type=str, default="Qwen/Qwen3.5-4B")
     p.add_argument("--sft_adapter_path", type=str, default="final_adapter/final_adapter")
     p.add_argument("--training_set_path", type=str, default="training_set.json")
+    p.add_argument("--training_qwen_path", type=str, default="")
     p.add_argument("--paper_root", type=str, default=".")
     p.add_argument("--output_dir", type=str, default="runs/ppo_from_sft")
     p.add_argument("--cache_prompts_path", type=str, default="")
@@ -57,17 +63,19 @@ def parse_args() -> argparse.Namespace:
     # Data
     p.add_argument("--val_ratio", type=float, default=0.1)
     p.add_argument("--seed", type=int, default=42)
-    p.add_argument("--max_context_chars", type=int, default=12000)
+    p.add_argument("--max_context_chars", type=int, default=4000)
     p.add_argument("--max_prompt_tokens", type=int, default=8192)
     p.add_argument("--max_new_tokens", type=int, default=128)
     p.add_argument("--temperature", type=float, default=0.5)
     p.add_argument("--top_p", type=float, default=0.9)
+    p.add_argument("--bf16", action="store_true", default=True)
 
     # PPO
     p.add_argument("--total_ppo_updates", type=int, default=1200)
     p.add_argument("--batch_size", type=int, default=8)
     p.add_argument("--mini_batch_size", type=int, default=2)
     p.add_argument("--ppo_epochs", type=int, default=1)
+    p.add_argument("--ppo_clip_range", type=float, default=0.2)
     p.add_argument("--learning_rate", type=float, default=1e-6)
     p.add_argument("--target_kl", type=float, default=0.05)
     p.add_argument("--init_kl_coef", type=float, default=0.02)
@@ -178,6 +186,114 @@ def convert_training_set_to_examples(
     return examples
 
 
+def _extract_tag(text: str, tag: str) -> str:
+    m = re.search(rf"<{tag}>\s*(.*?)\s*</{tag}>", text, flags=re.S)
+    return m.group(1).strip() if m else ""
+
+
+def _parse_yes_no_bool(text: str, key: str) -> bool | None:
+    m = re.search(rf"{key}\s*:\s*(yes|no|true|false)", text, flags=re.I)
+    if not m:
+        return None
+    v = m.group(1).lower()
+    return v in {"yes", "true"}
+
+
+def _parse_label(text: str) -> str | None:
+    m = re.search(r"\bEvaluation\s*:\s*(TP|TN|FP|FN)\b", text, flags=re.I)
+    if m:
+        return m.group(1).upper()
+    # Fallback for legacy outputs that may only contain the label.
+    m = re.search(r"\b(TP|TN|FP|FN)\b", text)
+    return m.group(1).upper() if m else None
+
+
+def convert_training_qwen_to_examples(training_qwen_path: Path, max_context_chars: int) -> list[Example]:
+    if not training_qwen_path.is_file():
+        # Modal-specific fallback: users may pass /vol/training_qwen.jsonl,
+        # but this file usually comes from the project mount at /root/project.
+        alt = Path("/root/project") / training_qwen_path.name
+        if alt.is_file():
+            print(
+                f"[warning] training_qwen path not found at {training_qwen_path}; "
+                f"falling back to {alt}"
+            )
+            training_qwen_path = alt
+
+    examples: list[Example] = []
+    skipped = 0
+    with training_qwen_path.open("r", encoding="utf-8") as f:
+        for idx, line in enumerate(tqdm(f, desc="Building PPO examples from training_qwen")):
+            if not line.strip():
+                continue
+            obj = json.loads(line)
+            messages = obj.get("messages", [])
+            if not isinstance(messages, list) or len(messages) < 3:
+                skipped += 1
+                continue
+
+            user_msg = None
+            assistant_msg = None
+            for m in messages:
+                if m.get("role") == "user":
+                    user_msg = str(m.get("content", ""))
+                elif m.get("role") == "assistant":
+                    assistant_msg = str(m.get("content", ""))
+            if not user_msg or not assistant_msg:
+                skipped += 1
+                continue
+
+            # training_qwen rows contain a full user prompt with <context>/<question>/<answer>.
+            # Rebuild prompt with a bounded context segment to keep PPO generation tensors tractable.
+            context = _extract_tag(user_msg, "context")
+            question = _extract_tag(user_msg, "question")
+            answer = _extract_tag(user_msg, "answer")
+            if context and question and answer:
+                user_msg = build_user_prompt(context[:max_context_chars], question, answer)
+            elif len(user_msg) > (max_context_chars + 4096):
+                # Conservative fallback if row is malformed: keep tail where question/answer usually live.
+                user_msg = user_msg[-(max_context_chars + 4096) :]
+
+            label = _parse_label(assistant_msg)
+            if label not in LABELS:
+                skipped += 1
+                continue
+
+            grounded = _parse_yes_no_bool(assistant_msg, "Grounded")
+            correct = _parse_yes_no_bool(assistant_msg, "Correct")
+            if grounded is None or correct is None:
+                # Fallback to label mapping if booleans are absent.
+                for (g, c), l in PAIR_TO_LABEL.items():
+                    if l == label:
+                        grounded, correct = g, c
+                        break
+            if grounded is None or correct is None:
+                skipped += 1
+                continue
+
+            doi = str(obj.get("doi", "")).strip()
+            if not doi:
+                context = _extract_tag(user_msg, "context")
+                if context:
+                    doi = "ctx_" + hashlib.md5(context.encode("utf-8")).hexdigest()[:16]
+                else:
+                    doi = f"row_{idx}"
+
+            examples.append(
+                Example(
+                    doi=doi,
+                    prompt=user_msg,
+                    grounded=grounded,
+                    correct=correct,
+                    evaluation=label,
+                )
+            )
+
+    print(f"Built {len(examples):,} PPO examples from training_qwen.jsonl")
+    print(f"Skipped malformed rows: {skipped:,}")
+    return examples
+
+
 def split_by_doi(examples: list[Example], val_ratio: float, seed: int) -> tuple[list[Example], list[Example]]:
     dois = sorted({ex.doi for ex in examples})
     rnd = random.Random(seed)
@@ -210,7 +326,7 @@ def extract_first_json_object(text: str) -> str | None:
 
 
 def parse_prediction(response_text: str) -> dict[str, Any] | None:
-    blob = extract_first_json_object(response_text)
+    blob = extract_first_json_object(_strip_think_prefix(response_text))
     if blob is None:
         return None
     try:
@@ -281,8 +397,9 @@ def sample_batch(examples: list[Example], batch_size: int, rnd: random.Random) -
 
 
 def evaluate_model(
-    ppo_trainer: Any,
+    model: Any,
     tokenizer: Any,
+    device: torch.device,
     val_examples: list[Example],
     args: argparse.Namespace,
 ) -> dict[str, float]:
@@ -299,9 +416,9 @@ def evaluate_model(
             return_tensors="pt",
             truncation=True,
             max_length=args.max_prompt_tokens,
-        ).to(ppo_trainer.accelerator.device)
+        ).to(device)
         with torch.no_grad():
-            out = ppo_trainer.model.generate(
+            out = model.generate(
                 **toks,
                 max_new_tokens=args.max_new_tokens,
                 do_sample=False,
@@ -347,13 +464,94 @@ def evaluate_model(
     }
 
 
+def _strip_think_prefix(text: str) -> str:
+    if "</think>" in text:
+        return text.split("</think>")[-1].strip()
+    return text.strip()
+
+
+def _sequence_log_probs(
+    model: Any,
+    sequences: list[list[int]],
+    prompt_lengths: list[int],
+    pad_token_id: int,
+    device: torch.device,
+) -> torch.Tensor:
+    if not sequences:
+        return torch.empty(0, device=device)
+
+    batch_size = len(sequences)
+    max_len = max(len(seq) for seq in sequences)
+    input_ids = torch.full((batch_size, max_len), pad_token_id, dtype=torch.long, device=device)
+    attention_mask = torch.zeros((batch_size, max_len), dtype=torch.long, device=device)
+    completion_mask = torch.zeros((batch_size, max_len - 1), dtype=torch.float32, device=device)
+
+    for i, (seq, p_len) in enumerate(zip(sequences, prompt_lengths, strict=True)):
+        seq_len = len(seq)
+        input_ids[i, :seq_len] = torch.tensor(seq, dtype=torch.long, device=device)
+        attention_mask[i, :seq_len] = 1
+        start = max(p_len - 1, 0)
+        end = max(seq_len - 1, 0)
+        if end > start:
+            completion_mask[i, start:end] = 1.0
+
+    outputs = model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)
+    logits = outputs.logits[:, :-1, :]
+    targets = input_ids[:, 1:]
+
+    token_log_probs = torch.log_softmax(logits, dim=-1)
+    gathered = torch.gather(token_log_probs, dim=-1, index=targets.unsqueeze(-1)).squeeze(-1)
+    return (gathered * completion_mask).sum(dim=1)
+
+
+def _validate_sft_adapter_path_or_raise(path_value: str) -> None:
+    p = Path(path_value)
+    if not p.exists():
+        # Could still be a Hub repo id, so only error hard for absolute/local-looking paths.
+        if path_value.startswith("/") or path_value.startswith("."):
+            raise RuntimeError(
+                f"SFT adapter path does not exist: {path_value}. "
+                "Provide a valid local path containing adapter weights or a valid HF repo id."
+            )
+        return
+
+    if not p.is_dir():
+        raise RuntimeError(f"SFT adapter path is not a directory: {path_value}")
+
+    has_cfg = (p / "adapter_config.json").is_file()
+    has_weights = (p / "adapter_model.safetensors").is_file() or (p / "adapter_model.bin").is_file()
+    if has_cfg and not has_weights:
+        raise RuntimeError(
+            "SFT adapter directory is missing adapter weights. Found adapter_config.json but no "
+            "adapter_model.safetensors/adapter_model.bin at "
+            f"{path_value}. "
+            "Use a real SFT checkpoint directory (for example from /vol/runs/.../final_adapter) as --sft_adapter_path."
+        )
+
+
 def train(args: argparse.Namespace) -> None:
     from peft import PeftModel
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-    from trl import AutoModelForCausalLMWithValueHead, PPOConfig, PPOTrainer, create_reference_model
 
     random.seed(args.seed)
     torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        print(f"CUDA_VISIBLE_DEVICES={os.environ.get('CUDA_VISIBLE_DEVICES', '<unset>')}")
+        print(f"torch.cuda.device_count()={torch.cuda.device_count()}")
+        if torch.cuda.device_count() > 1:
+            # Prevent transformers Trainer from wrapping model in DataParallel.
+            print("[warning] More than one CUDA device visible; forcing training to cuda:0.")
+            torch.cuda.set_device(0)
+
+    # Guardrail: very long prompts with larger PPO batches can trigger large
+    # conv1d tensors in Qwen's linear attention path.
+    effective_max_context_chars = args.max_context_chars
+    if args.batch_size >= 8 and args.max_context_chars > 4000:
+        effective_max_context_chars = 4000
+        print(
+            "[warning] Reducing max_context_chars to 4000 for stability with "
+            f"batch_size={args.batch_size}. You can override by lowering batch size."
+        )
 
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -370,11 +568,16 @@ def train(args: argparse.Namespace) -> None:
         cached = [Example(**x) for x in json.loads(cache_path.read_text(encoding="utf-8"))]
         examples = cached
         print(f"Loaded {len(examples):,} prompt records from cache")
+    elif args.training_qwen_path:
+        examples = convert_training_qwen_to_examples(
+            training_qwen_path=Path(args.training_qwen_path),
+            max_context_chars=effective_max_context_chars,
+        )
     else:
         examples = convert_training_set_to_examples(
             training_set_path=Path(args.training_set_path),
             paper_root=Path(args.paper_root),
-            max_context_chars=args.max_context_chars,
+            max_context_chars=effective_max_context_chars,
         )
     if not examples:
         raise RuntimeError("No PPO examples built. Check --paper_root and input paths.")
@@ -401,105 +604,166 @@ def train(args: argparse.Namespace) -> None:
         torch_dtype=torch.bfloat16,
         trust_remote_code=True,
         attn_implementation="sdpa",
-        device_map="auto",
+        device_map={"": int(os.environ.get("LOCAL_RANK", 0))},
     )
-
     print(f"Loading SFT adapter from {args.sft_adapter_path} ...")
-    peft_model = PeftModel.from_pretrained(base_model, args.sft_adapter_path, is_trainable=True)
-    peft_model.config.use_cache = False
+    _validate_sft_adapter_path_or_raise(args.sft_adapter_path)
+    model = PeftModel.from_pretrained(base_model, args.sft_adapter_path, is_trainable=True)
+    model.config.use_cache = False
+    device = next(model.parameters()).device
+    trainable_params = [p for p in model.parameters() if p.requires_grad]
+    if not trainable_params:
+        raise RuntimeError("No trainable parameters found in adapter model.")
+    optimizer = torch.optim.AdamW(trainable_params, lr=args.learning_rate)
 
-    print("Wrapping model with value head for PPO ...")
-    model = AutoModelForCausalLMWithValueHead.from_pretrained(peft_model)
-    ref_model = create_reference_model(model)
-
-    ppo_config = PPOConfig(
-        learning_rate=args.learning_rate,
-        batch_size=args.batch_size,
-        mini_batch_size=args.mini_batch_size,
-        ppo_epochs=args.ppo_epochs,
-        gradient_accumulation_steps=args.gradient_accumulation_steps,
-        target_kl=args.target_kl,
-        init_kl_coef=args.init_kl_coef,
-        seed=args.seed,
-        log_with="wandb",
-        project_kwargs={"project": "cs285-ppo-evaluator"},
-    )
-
-    ppo_trainer = PPOTrainer(
-        config=ppo_config,
-        model=model,
-        ref_model=ref_model,
-        tokenizer=tokenizer,
-        dataset=None,
-        data_collator=None,
-    )
-
-    gen_kwargs = {
-        "max_new_tokens": args.max_new_tokens,
-        "do_sample": True,
-        "top_p": args.top_p,
-        "temperature": args.temperature,
-        "pad_token_id": tokenizer.pad_token_id,
-        "eos_token_id": tokenizer.eos_token_id,
-    }
-
+    kl_coef = float(args.init_kl_coef)
     rnd = random.Random(args.seed)
-    print("Starting PPO updates ...")
-    for step in range(1, args.total_ppo_updates + 1):
+    optimizer.zero_grad(set_to_none=True)
+
+    print("Starting PPO optimization loop ...")
+    for update in range(1, args.total_ppo_updates + 1):
         batch_examples = sample_batch(train_examples, args.batch_size, rnd)
-
         prompts = [build_prompt(tokenizer, ex.prompt) for ex in batch_examples]
-        query_tensors = []
-        for ptxt in prompts:
-            ids = tokenizer(
-                ptxt,
-                return_tensors="pt",
-                truncation=True,
-                max_length=args.max_prompt_tokens,
-            )["input_ids"][0]
-            query_tensors.append(ids.to(ppo_trainer.accelerator.device))
+        prompt_toks = tokenizer(
+            prompts,
+            return_tensors="pt",
+            padding=True,
+            truncation=True,
+            max_length=args.max_prompt_tokens,
+        ).to(device)
+        prompt_input_ids = prompt_toks["input_ids"]
+        prompt_attention_mask = prompt_toks["attention_mask"]
+        padded_prompt_len = prompt_input_ids.shape[1]
 
-        response_tensors = ppo_trainer.generate(query_tensors, **gen_kwargs)
-        decoded = [tokenizer.decode(rt, skip_special_tokens=True) for rt in response_tensors]
-
-        rewards = []
-        reward_breakdown = Counter()
-        for ex, txt in zip(batch_examples, decoded):
-            parsed = parse_prediction(txt)
-            reward_value, metrics = reward_for_prediction(parsed, ex, weights, args)
-            rewards.append(torch.tensor(reward_value, dtype=torch.float32).to(ppo_trainer.accelerator.device))
-            reward_breakdown["reward_sum"] += reward_value
-            reward_breakdown["format"] += metrics["format"]
-            reward_breakdown["consistency"] += metrics["consistency"]
-            reward_breakdown["label"] += metrics["label"]
-
-        stats = ppo_trainer.step(query_tensors, response_tensors, rewards)
-
-        if step % args.log_every == 0:
-            bsz = max(1, len(batch_examples))
-            avg_reward = reward_breakdown["reward_sum"] / bsz
-            avg_format = reward_breakdown["format"] / bsz
-            avg_consistency = reward_breakdown["consistency"] / bsz
-            avg_label = reward_breakdown["label"] / bsz
-            kl_val = float(stats.get("objective/kl", math.nan))
-            print(
-                f"[step {step:5d}] reward={avg_reward:+.4f} "
-                f"format={avg_format:.3f} consistency={avg_consistency:.3f} "
-                f"label={avg_label:+.3f} kl={kl_val:.4f}"
+        model.eval()
+        with torch.no_grad():
+            generated = model.generate(
+                input_ids=prompt_input_ids,
+                attention_mask=prompt_attention_mask,
+                max_new_tokens=args.max_new_tokens,
+                do_sample=True,
+                temperature=args.temperature,
+                top_p=args.top_p,
+                pad_token_id=tokenizer.pad_token_id,
+                eos_token_id=tokenizer.eos_token_id,
             )
 
-        if step % args.eval_every == 0 and val_examples:
-            metrics = evaluate_model(ppo_trainer, tokenizer, val_examples, args)
+        completion_ids = generated[:, padded_prompt_len:]
+
+        sequences: list[list[int]] = []
+        prompt_lengths: list[int] = []
+        rewards: list[float] = []
+        for ex, p_ids, p_mask, c_ids in zip(
+            batch_examples, prompt_input_ids, prompt_attention_mask, completion_ids, strict=True
+        ):
+            prompt_list = p_ids[p_mask.bool()].tolist()
+            completion_list = c_ids.tolist()
+            if tokenizer.pad_token_id is not None:
+                while completion_list and completion_list[-1] == tokenizer.pad_token_id:
+                    completion_list.pop()
+            if not completion_list and tokenizer.eos_token_id is not None:
+                completion_list = [tokenizer.eos_token_id]
+
+            completion_text = _strip_think_prefix(
+                tokenizer.decode(completion_list, skip_special_tokens=True)
+            )
+            parsed = parse_prediction(completion_text)
+            reward_value, _metrics = reward_for_prediction(parsed, ex, weights, args)
+
+            sequences.append(prompt_list + completion_list)
+            prompt_lengths.append(len(prompt_list))
+            rewards.append(float(reward_value))
+
+        with torch.no_grad():
+            old_log_probs = _sequence_log_probs(
+                model=model,
+                sequences=sequences,
+                prompt_lengths=prompt_lengths,
+                pad_token_id=tokenizer.pad_token_id,
+                device=device,
+            )
+
+        rewards_t = torch.tensor(rewards, dtype=torch.float32, device=device)
+        advantages = rewards_t - rewards_t.mean()
+        advantages = advantages / (advantages.std(unbiased=False) + 1e-6)
+
+        minibatch_indices = list(range(len(sequences)))
+        model.train()
+        step_approx_kls: list[float] = []
+        accum = 0
+        for _epoch in range(args.ppo_epochs):
+            rnd.shuffle(minibatch_indices)
+            for start in range(0, len(minibatch_indices), args.mini_batch_size):
+                idx = minibatch_indices[start : start + args.mini_batch_size]
+                mb_sequences = [sequences[i] for i in idx]
+                mb_prompt_lengths = [prompt_lengths[i] for i in idx]
+                mb_old_log_probs = old_log_probs[idx]
+                mb_adv = advantages[idx]
+
+                new_log_probs = _sequence_log_probs(
+                    model=model,
+                    sequences=mb_sequences,
+                    prompt_lengths=mb_prompt_lengths,
+                    pad_token_id=tokenizer.pad_token_id,
+                    device=device,
+                )
+                ratio = torch.exp(new_log_probs - mb_old_log_probs)
+                clipped_ratio = torch.clamp(
+                    ratio, 1.0 - args.ppo_clip_range, 1.0 + args.ppo_clip_range
+                )
+                policy_loss = -torch.min(ratio * mb_adv, clipped_ratio * mb_adv).mean()
+                approx_kl = 0.5 * ((new_log_probs - mb_old_log_probs) ** 2).mean()
+                loss = policy_loss + kl_coef * approx_kl
+                loss.backward()
+
+                accum += 1
+                if accum % max(1, args.gradient_accumulation_steps) == 0:
+                    torch.nn.utils.clip_grad_norm_(trainable_params, 1.0)
+                    optimizer.step()
+                    optimizer.zero_grad(set_to_none=True)
+                step_approx_kls.append(float(approx_kl.detach().cpu().item()))
+
+        if accum % max(1, args.gradient_accumulation_steps) != 0:
+            torch.nn.utils.clip_grad_norm_(trainable_params, 1.0)
+            optimizer.step()
+            optimizer.zero_grad(set_to_none=True)
+
+        mean_reward = float(rewards_t.mean().detach().cpu().item())
+        mean_kl = float(sum(step_approx_kls) / max(1, len(step_approx_kls)))
+        if mean_kl > args.target_kl * 1.5:
+            kl_coef = min(1.0, kl_coef * 1.5)
+        elif mean_kl < args.target_kl / 1.5:
+            kl_coef = max(1e-4, kl_coef / 1.5)
+
+        if update % args.log_every == 0 or update == 1:
             print(
-                f"[val @ {step:5d}] "
+                f"[update {update:05d}] reward={mean_reward:.4f} "
+                f"approx_kl={mean_kl:.4f} kl_coef={kl_coef:.6f}"
+            )
+
+        if val_examples and (update % args.eval_every == 0):
+            model.eval()
+            metrics = evaluate_model(
+                model=model,
+                tokenizer=tokenizer,
+                device=device,
+                val_examples=val_examples,
+                args=args,
+            )
+            print(
+                f"[eval {update:05d}] "
                 f"acc={metrics['acc']:.4f} macro_f1={metrics['macro_f1']:.4f} "
                 f"parse_rate={metrics['parse_rate']:.4f}"
             )
+            ckpt_dir = out_dir / f"checkpoint-{update}"
+            ckpt_dir.mkdir(parents=True, exist_ok=True)
+            model.save_pretrained(ckpt_dir)
+            tokenizer.save_pretrained(ckpt_dir)
 
     final_dir = out_dir / "final_adapter"
     final_dir.mkdir(parents=True, exist_ok=True)
     print(f"Saving PPO adapter to {final_dir} ...")
-    model.pretrained_model.save_pretrained(final_dir)
+    model.save_pretrained(final_dir)
     tokenizer.save_pretrained(final_dir)
     print("Done.")
 

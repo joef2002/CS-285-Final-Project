@@ -17,6 +17,12 @@ from tqdm import tqdm
 LABELS = ("TP", "TN", "FP", "FN")
 
 
+def strip_think_prefix(text: str) -> str:
+    if "</think>" in text:
+        return text.split("</think>")[-1].strip()
+    return text.strip()
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--model_name_or_path", type=str, default="Qwen/Qwen3.5-4B")
@@ -40,7 +46,8 @@ def extract_first_json_object(text: str) -> str | None:
 
 
 def parse_prediction(text: str, strict_json_only: bool) -> tuple[str | None, dict[str, Any] | None]:
-    blob = extract_first_json_object(text)
+    clean_text = strip_think_prefix(text)
+    blob = extract_first_json_object(clean_text)
     parsed: dict[str, Any] | None = None
     if blob is not None:
         try:
@@ -55,7 +62,7 @@ def parse_prediction(text: str, strict_json_only: bool) -> tuple[str | None, dic
             return label, parsed
     if strict_json_only:
         return None, parsed
-    m = re.search(r"\b(TP|TN|FP|FN)\b", text)
+    m = re.search(r"\b(TP|TN|FP|FN)\b", clean_text)
     return (m.group(1) if m else None), parsed
 
 

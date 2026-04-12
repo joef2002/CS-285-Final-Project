@@ -59,8 +59,7 @@ uv sync --extra remote
 python ppo_train.py \
   --model_name_or_path Qwen/Qwen3.5-4B \
   --sft_adapter_path final_adapter/final_adapter \
-  --training_set_path training_set.json \
-  --paper_root "/absolute/path/to/retchemqa/root" \
+  --training_qwen_path training_qwen.jsonl \
   --output_dir runs/ppo_from_sft \
   --total_ppo_updates 1200 \
   --batch_size 8 \
@@ -71,7 +70,9 @@ python ppo_train.py \
 
 Notes:
 
-- `--paper_root` must point to the directory that contains the files referenced by `ms` and `si` in `training_set.json`.
+- Preferred path: use `--training_qwen_path training_qwen.jsonl` (context already embedded, no MS/SI file lookup needed).
+- If you use `--training_set_path` instead, `--paper_root` must point to the directory that contains files referenced by `ms` and `si`.
+- `--sft_adapter_path` must point to a real adapter checkpoint containing `adapter_model.safetensors` (or `.bin`), not config-only files.
 - Data split is by DOI (paper-level) to reduce leakage.
 
 ### Evaluate PPO checkpoint
@@ -90,6 +91,44 @@ This reports:
 - macro-F1
 - parse rate
 - per-class precision/recall for TP/TN/FP/FN
+
+### Run PPO on Modal (`python3`)
+
+`modal_train.py` includes `ppo_remote` and `ppo_eval_remote` for GPU runs.
+
+Recommended: run PPO from `training_qwen.jsonl` (no raw corpus mount needed).
+Legacy option: `training_set.json` stores `ms`/`si` as relative paths like `all paper ft data/...`; since `.gitignore` excludes that folder, copy corpus to Modal volume and set `--paper_root /vol`.
+
+Before training, verify path mapping with:
+
+```bash
+uv run modal run modal_train.py::ppo_data_check_remote -- \
+  --training_qwen_path /root/project/training_qwen.jsonl \
+  --sample_papers 50
+```
+
+```bash
+# 1) Train PPO on Modal (uses python3 inside container)
+uv run modal run modal_train.py::ppo_remote -- \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --sft_adapter_path /root/project/final_adapter/final_adapter \
+  --training_qwen_path /root/project/training_qwen.jsonl \
+  --output_dir /vol/runs/ppo_from_sft \
+  --total_ppo_updates 1200 \
+  --batch_size 8 \
+  --mini_batch_size 2 \
+  --learning_rate 1e-6 \
+  --eval_every 100
+
+# 2) Evaluate PPO adapter on test_qwen
+uv run modal run modal_train.py::ppo_eval_remote -- \
+  --model_name_or_path Qwen/Qwen3.5-4B \
+  --adapter_path /vol/runs/ppo_from_sft/final_adapter \
+  --test_path /root/project/test_qwen.jsonl \
+  --output_path /vol/runs/ppo_from_sft/test_predictions.jsonl
+```
+
+If you use `--training_set_path` mode and `--paper_root` is wrong, PPO logs show many skipped papers due to unreadable MS/SI context.
 
 ---
 

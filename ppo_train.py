@@ -668,6 +668,9 @@ def train(args: argparse.Namespace) -> None:
                 tokenizer.decode(completion_list, skip_special_tokens=True)
             )
             parsed = parse_prediction(completion_text)
+            if update == 1 and len(rewards) < 3:
+                print("RAW:", repr(completion_text))
+                print("PARSED:", parsed)
             reward_value, _metrics = reward_for_prediction(parsed, ex, weights, args)
 
             sequences.append(prompt_list + completion_list)
@@ -740,6 +743,7 @@ def train(args: argparse.Namespace) -> None:
                 f"[update {update:05d}] reward={mean_reward:.4f} "
                 f"approx_kl={mean_kl:.4f} kl_coef={kl_coef:.6f}"
             )
+            
 
         if val_examples and (update % args.eval_every == 0):
             model.eval()

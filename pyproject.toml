@@ -34,4 +34,7 @@ py-modules = [
   "modal_train",
   "ppo_train",
   "ppo_eval",
+  "grpo_train",
+  "grpo_eval",
+  "modal_grpo_train",
 ]

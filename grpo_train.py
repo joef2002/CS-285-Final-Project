@@ -72,9 +72,9 @@ def parse_args() -> argparse.Namespace:
     # Data
     p.add_argument("--val_ratio", type=float, default=0.1)
     p.add_argument("--seed", type=int, default=42)
-    p.add_argument("--max_context_chars", type=int, default=4000)
+    p.add_argument("--max_context_chars", type=int, default=16000)
     p.add_argument("--max_prompt_tokens", type=int, default=512)
-    p.add_argument("--max_new_tokens", type=int, default=128)
+    p.add_argument("--max_new_tokens", type=int, default=256)
     p.add_argument("--temperature", type=float, default=0.5)
     p.add_argument("--top_p", type=float, default=0.9)
     p.add_argument("--logprob_batch_size", type=int, default=2)
@@ -102,15 +102,19 @@ def parse_args() -> argparse.Namespace:
     )
 
     # Reward
-    p.add_argument("--reward_format_weight", type=float, default=0.3)
-    p.add_argument("--reward_consistency_weight", type=float, default=0.2)
-    p.add_argument("--reward_label_weight", type=float, default=0.5)
+    p.add_argument("--reward_format_weight", type=float, default=0.1)
+    p.add_argument("--reward_consistency_weight", type=float, default=0.1)
+    p.add_argument("--reward_label_weight", type=float, default=0.8)
     p.add_argument("--class_balance_alpha", type=float, default=0.5)
 
     # Logging / eval
     p.add_argument("--log_every", type=int, default=1)
     p.add_argument("--eval_every", type=int, default=100)
     p.add_argument("--eval_max_examples", type=int, default=256)
+    p.add_argument("--wandb_enabled", action=argparse.BooleanOptionalAction, default=True)
+    p.add_argument("--wandb_project", type=str, default="cs285-final-project")
+    p.add_argument("--wandb_entity", type=str, default="")
+    p.add_argument("--wandb_run_name", type=str, default="")
 
     return p.parse_args()
 
@@ -769,6 +773,32 @@ def train(args: argparse.Namespace) -> None:
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    wandb_module = None
+    wandb_run = None
+    if args.wandb_enabled:
+        try:
+            import wandb as _wandb
+
+            run_name = args.wandb_run_name or (
+                f"grpo-{Path(args.model_name_or_path).name}-"
+                f"bs{args.batch_size}-g{args.group_size}-lr{args.learning_rate}"
+            )
+            init_kwargs: dict[str, Any] = {
+                "project": args.wandb_project,
+                "name": run_name,
+                "config": vars(args),
+            }
+            if args.wandb_entity:
+                init_kwargs["entity"] = args.wandb_entity
+            wandb_module = _wandb
+            wandb_run = wandb_module.init(**init_kwargs)
+        except Exception as exc:
+            print(
+                "[warning] wandb init failed; disabling wandb logging. "
+                f"{type(exc).__name__}: {exc}"
+            )
+            args.wandb_enabled = False
+
     print("Loading tokenizer ...")
     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path, trust_remote_code=True)
     if tokenizer.pad_token is None:
@@ -983,6 +1013,26 @@ def train(args: argparse.Namespace) -> None:
                 f"group_std={rollout_stats['group_reward_std_mean']:.4f} "
                 f"loss={loss.item():.4f} policy={policy_loss_value:.4f} kl_loss={kl_loss_value:.4f}"
             )
+        if wandb_run is not None and wandb_module is not None:
+            wandb_module.log(
+                {
+                    "train/step": step,
+                    "train/reward_mean": rollout_stats["reward_mean"],
+                    "train/reward_format": rollout_stats["reward_format"],
+                    "train/reward_consistency": rollout_stats["reward_consistency"],
+                    "train/reward_label": rollout_stats["reward_label"],
+                    "train/parse_rate": rollout_stats["parse_rate"],
+                    "train/group_reward_std_mean": rollout_stats["group_reward_std_mean"],
+                    "train/group_reward_mean_abs": rollout_stats["group_reward_mean_abs"],
+                    "train/adv_abs_mean": rollout_stats["adv_abs_mean"],
+                    "train/kl": final_approx_kl,
+                    "train/kl_coef": kl_coef,
+                    "train/loss": float(loss.item()),
+                    "train/policy_loss": policy_loss_value,
+                    "train/kl_loss": kl_loss_value,
+                },
+                step=step,
+            )
 
         if step % args.eval_every == 0 and val_examples:
             model.eval()
@@ -992,6 +1042,16 @@ def train(args: argparse.Namespace) -> None:
                 f"acc={metrics['acc']:.4f} macro_f1={metrics['macro_f1']:.4f} "
                 f"parse_rate={metrics['parse_rate']:.4f}"
             )
+            if wandb_run is not None and wandb_module is not None:
+                wandb_module.log(
+                    {
+                        "val/step": step,
+                        "val/acc": metrics["acc"],
+                        "val/macro_f1": metrics["macro_f1"],
+                        "val/parse_rate": metrics["parse_rate"],
+                    },
+                    step=step,
+                )
             # Save intermediate checkpoint (consistent with PPO)
             ckpt_dir = out_dir / f"checkpoint-{step}"
             ckpt_dir.mkdir(parents=True, exist_ok=True)
@@ -1003,6 +1063,11 @@ def train(args: argparse.Namespace) -> None:
     print(f"Saving GRPO adapter to {final_dir} ...")
     model.save_pretrained(final_dir)
     tokenizer.save_pretrained(final_dir)
+    if wandb_run is not None and wandb_module is not None:
+        try:
+            wandb_module.finish()
+        except Exception:
+            pass
     print("Done.")
 
 

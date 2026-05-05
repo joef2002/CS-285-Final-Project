@@ -165,7 +165,7 @@ python grpo_train.py \
   --grpo_epochs 1 \
   --logprob_batch_size 1 \
   --max_prompt_tokens 512 \
-  --max_new_tokens 128 \
+  --max_new_tokens 512 \
   --max_context_chars 1500 \
   --learning_rate 1e-6 \
   --eval_every 100

@@ -74,7 +74,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--max_context_chars", type=int, default=16000)
     p.add_argument("--max_prompt_tokens", type=int, default=512)
-    p.add_argument("--max_new_tokens", type=int, default=256)
+    p.add_argument("--max_new_tokens", type=int, default=512)
     p.add_argument("--temperature", type=float, default=0.5)
     p.add_argument("--top_p", type=float, default=0.9)
     p.add_argument("--logprob_batch_size", type=int, default=2)
@@ -542,6 +542,8 @@ def collect_group_rollouts(
             if not completion_tokens and tokenizer.eos_token_id is not None:
                 completion_tokens = [tokenizer.eos_token_id]
             grouped_completions[prompt_index].append(completion_tokens)
+        del generated
+        torch.cuda.empty_cache()
 
     reward_groups: list[list[float]] = [[] for _ in batch_examples]
     reward_breakdown = Counter()
@@ -555,18 +557,8 @@ def collect_group_rollouts(
             completion_text = _strip_think_prefix(completion_text)
             parsed = parse_prediction(completion_text)
 
-            # if prompt_index == 0 and len(grouped_samples[prompt_index]) < 2:
-            #     print("RAW:", repr(completion_text))
-            #     print("PARSED:", parsed)
-
             is_parsed_ok = parsed is not None and str(parsed.get("evaluation", "")).upper() in LABELS
             reward_value, metrics = reward_for_prediction(parsed, example, weights, args)
-
-            # if parsed is not None and prompt_index == 0 and len(grouped_samples[prompt_index]) < 2:
-            #     print("GOLD:", example.evaluation)
-            #     print("PRED:", parsed.get("evaluation"))
-            #     print("METRICS:", metrics)
-            #     print("REWARD:", reward_value)
 
             reward_groups[prompt_index].append(reward_value)
             reward_breakdown["reward_sum"] += reward_value
@@ -576,12 +568,26 @@ def collect_group_rollouts(
             if is_parsed_ok:
                 parsed_ok += 1
 
+            sequence_tokens = prompt_token_ids + completion_tokens
+            prompt_length = int(prompt_lengths[prompt_index])
+            
+            # Compute log prob immediately for this sequence (memory-efficient: one at a time)
+            with torch.no_grad():
+                old_log_prob_value = _sequence_log_probs(
+                    model=model,
+                    sequences=[sequence_tokens],
+                    prompt_lengths=[prompt_length],
+                    pad_token_id=tokenizer.pad_token_id,
+                    device=device,
+                ).squeeze(0).cpu().item()
+            torch.cuda.empty_cache()
+
             grouped_samples[prompt_index].append(
                 GRPOSample(
-                    sequence_tokens=prompt_token_ids + completion_tokens,
-                    prompt_length=int(prompt_lengths[prompt_index]),
+                    sequence_tokens=sequence_tokens,
+                    prompt_length=prompt_length,
                     advantage=0.0,
-                    old_log_prob=0.0,
+                    old_log_prob=old_log_prob_value,
                     parsed_ok=is_parsed_ok,
                 )
             )
@@ -593,17 +599,6 @@ def collect_group_rollouts(
         raise RuntimeError("Internal GRPO error: advantage and sample counts do not match.")
     for sample, advantage in zip(samples, advantages, strict=True):
         sample.advantage = advantage
-
-    old_log_probs = batched_sequence_log_probs(
-        model=model,
-        sequences=[sample.sequence_tokens for sample in samples],
-        prompt_lengths=[sample.prompt_length for sample in samples],
-        pad_token_id=tokenizer.pad_token_id,
-        device=device,
-        batch_size=args.logprob_batch_size,
-    ).detach()
-    for sample, old_log_prob in zip(samples, old_log_probs.tolist(), strict=True):
-        sample.old_log_prob = float(old_log_prob)
 
     stats = {
         "reward_mean": float(reward_breakdown["reward_sum"] / max(1, len(samples))),
@@ -646,12 +641,17 @@ def _sequence_log_probs(
     outputs = model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)
     logits = outputs.logits[:, :-1, :]
     targets = input_ids[:, 1:]
+    del input_ids, attention_mask, outputs
 
     selected_logits = torch.gather(logits, dim=-1, index=targets.unsqueeze(-1)).squeeze(-1)
     log_denom = torch.logsumexp(logits, dim=-1)
+    del logits, targets
     gathered = selected_logits - log_denom
+    del selected_logits, log_denom
 
-    return (gathered * completion_mask).sum(dim=1)
+    result = (gathered * completion_mask).sum(dim=1)
+    del gathered, completion_mask
+    return result
 
 
 def evaluate_model(
@@ -919,14 +919,15 @@ def train(args: argparse.Namespace) -> None:
             [sample.old_log_prob for sample in rollout_samples],
             dtype=torch.float32,
             device=device,
-        )
+        ).detach()
         advantages = torch.tensor(
             [sample.advantage for sample in rollout_samples],
             dtype=torch.float32,
             device=device,
-        )
+        ).detach()
 
         model.train()
+        torch.cuda.empty_cache()
         optimizer.zero_grad(set_to_none=True)
         accum = 0
         sample_indices = list(range(len(rollout_samples)))
@@ -980,6 +981,11 @@ def train(args: argparse.Namespace) -> None:
 
         model.eval()
         with torch.no_grad():
+            old_log_probs_tensor = torch.tensor(
+                [sample.old_log_prob for sample in rollout_samples],
+                dtype=torch.float32,
+                device=device,
+            )
             new_log_probs = batched_sequence_log_probs(
                 model=model,
                 sequences=sequences,
@@ -988,7 +994,9 @@ def train(args: argparse.Namespace) -> None:
                 device=device,
                 batch_size=args.logprob_batch_size,
             )
-        final_approx_kl = float(0.5 * (new_log_probs - old_log_probs).pow(2).mean().item())
+        final_approx_kl = float(0.5 * (new_log_probs - old_log_probs_tensor).pow(2).mean().item())
+        del new_log_probs, old_log_probs_tensor
+        torch.cuda.empty_cache()
 
         if args.target_kl > 0:
             if final_approx_kl > args.target_kl * 1.5:

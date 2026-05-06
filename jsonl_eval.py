@@ -81,6 +81,15 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--expected_field", type=str, default="expected")
     p.add_argument("--expected_label_field", type=str, default="evaluation")
     p.add_argument("--response_field", type=str, default="model_response")
+    p.add_argument(
+        "--label_weights",
+        type=str,
+        default="TP=0.89,TN=0.068,FP=0.038,FN=0.004",
+        help=(
+            "Comma-separated label weights, e.g. 'TP=0.89,TN=0.068,FP=0.038,FN=0.004'. "
+            "Defaults to the screenshot distribution and will be normalized to sum to 1."
+        ),
+    )
     return p.parse_args()
 
 
@@ -106,10 +115,19 @@ def main() -> None:
             pred_for_conf = pred_label if pred_label in LABELS else "PARSE_FAIL"
 
             counts["n"] += 1
+            if expected_label == "TP":
+                counts["tp_gold"] += 1
+            elif expected_label in LABELS:
+                counts["non_tp_gold"] += 1
+
             if pred_for_conf != "PARSE_FAIL":
                 counts["parse_ok"] += 1
             if pred_for_conf in LABELS and pred_for_conf == expected_label:
                 counts["correct"] += 1
+            if expected_label == "TP" and pred_for_conf == "TP":
+                counts["tp_caught"] += 1
+            if expected_label in LABELS and expected_label != "TP" and pred_for_conf in LABELS and pred_for_conf != "TP":
+                counts["non_tp_caught"] += 1
             conf[(expected_label, pred_for_conf)] += 1
 
             out.write(
@@ -129,9 +147,49 @@ def main() -> None:
     acc = counts["correct"] / max(1, counts["n"])
     parse_rate = counts["parse_ok"] / max(1, counts["n"])
     mf1 = macro_f1(conf)
+    # compute per-label gold counts and per-label correct (catch) rates
+    gold_counts: dict[str, int] = {}
+    catch_rates: dict[str, float] = {}
+    for lbl in LABELS:
+        gold = sum(conf[(lbl, p)] for p in LABELS) + conf[(lbl, "PARSE_FAIL")]
+        gold_counts[lbl] = gold
+        caught = conf[(lbl, lbl)]
+        catch_rates[lbl] = (caught / gold) if gold else 0.0
+
+    # parse label weights from args (format: TP=0.89,TN=0.068,...). Default: uniform
+    if args.label_weights:
+        parts = [p.strip() for p in args.label_weights.split(",") if p.strip()]
+        weights: dict[str, float] = {}
+        for part in parts:
+            if "=" not in part:
+                continue
+            k, v = part.split("=", 1)
+            k = k.strip().upper()
+            try:
+                weights[k] = float(v)
+            except ValueError:
+                weights[k] = 0.0
+        # fill missing labels with 0
+        for lbl in LABELS:
+            weights.setdefault(lbl, 0.0)
+        total_w = sum(weights.values())
+        if total_w <= 0:
+            # fallback to uniform
+            weights = {lbl: 1.0 / len(LABELS) for lbl in LABELS}
+        else:
+            weights = {lbl: weights[lbl] / total_w for lbl in LABELS}
+    else:
+        weights = {lbl: 1.0 / len(LABELS) for lbl in LABELS}
+
+    # weighted accuracy = sum_{label} weight[label] * catch_rate[label]
+    weighted_acc = sum(weights[lbl] * catch_rates[lbl] for lbl in LABELS)
 
     print("\n=== Metrics ===")
-    print(f"Accuracy:   {acc:.4f}")
+    print(f"Weighted Accuracy: {weighted_acc:.4f}")
+    print("Per-label weights and catch rates:")
+    for lbl in LABELS:
+        print(f"  {lbl}: weight={weights[lbl]:.4f} catch_rate={catch_rates[lbl]:.4f} (gold={gold_counts[lbl]})")
+    print(f"Exact Accuracy:    {acc:.4f}")
     print(f"Macro-F1:   {mf1:.4f}")
     print(f"Parse rate: {parse_rate:.4f}")
     for lbl in LABELS:

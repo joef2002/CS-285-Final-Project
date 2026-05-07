@@ -37,4 +37,7 @@ py-modules = [
   "grpo_train",
   "grpo_eval",
   "modal_grpo_train",
+  "dpo_train",
+  "dpo_eval",
+  "build_dpo_pairs",
 ]

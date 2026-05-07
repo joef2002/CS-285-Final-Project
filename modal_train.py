@@ -16,6 +16,7 @@ PROJECT_DIR = "/root/project"
 VOLUME_PATH = "/vol"
 DEFAULT_GPU = "H100:4"
 DEFAULT_PPO_GPU = "H100:1"
+DEFAULT_H200_GPU = "H200:4"
 DEFAULT_CPU = 8.0
 DEFAULT_MEMORY_MB = 65536
 DEFAULT_TIMEOUT_SECONDS = 60 * 60 * 24
@@ -167,6 +168,41 @@ def _normalize_grpo_args(args: tuple[str, ...], *, is_eval: bool) -> list[str]:
     normalized = _rewrite_path_flag(normalized, "--cache_prompts_path")
     # training_qwen.jsonl is mounted with the project source tree, not in /vol.
     normalized = _rewrite_project_path_flag(normalized, "--training_qwen_path")
+    return normalized
+
+
+def _normalize_dpo_pairs_args(args: tuple[str, ...]) -> list[str]:
+    normalized = list(args)
+    normalized = _rewrite_project_path_flag(normalized, "--input_path")
+    normalized = _rewrite_path_flag(normalized, "--output_path")
+    return normalized
+
+
+def _normalize_dpo_train_args(args: tuple[str, ...]) -> list[str]:
+    normalized = list(args)
+    normalized = _rewrite_path_flag(
+        normalized, "--output_dir",
+        default_relative_if_missing="runs/dpo_from_sft",
+    )
+    normalized = _rewrite_project_path_flag(normalized, "--sft_adapter_path")
+    normalized = _rewrite_path_flag(
+        normalized, "--dpo_pairs_path",
+        default_relative_if_missing="dpo_pairs.jsonl",
+    )
+    return normalized
+
+
+def _normalize_dpo_eval_args(args: tuple[str, ...]) -> list[str]:
+    normalized = list(args)
+    normalized = _rewrite_path_flag(
+        normalized, "--adapter_path",
+        default_relative_if_missing="runs/dpo_from_sft/final_adapter",
+    )
+    normalized = _rewrite_project_path_flag(normalized, "--test_path")
+    normalized = _rewrite_path_flag(
+        normalized, "--output_path",
+        default_relative_if_missing="runs/dpo_from_sft/test_predictions.jsonl",
+    )
     return normalized
 
 
@@ -582,6 +618,96 @@ def grpo_eval_remote(*args: str) -> None:
             "CUDA_VISIBLE_DEVICES": "0",
         },
     )
+
+
+@app.function(
+    volumes={VOLUME_PATH: volume},
+    timeout=60 * 30,
+    env=env,
+    image=image,
+    cpu=2.0,
+    memory=4096,
+)
+def dpo_build_pairs_remote(*args: str) -> None:
+    normalized_args = _normalize_dpo_pairs_args(args)
+    if not any(a == "--input_path" or a.startswith("--input_path=") for a in normalized_args):
+        normalized_args = list(normalized_args) + [
+            "--input_path", f"{PROJECT_DIR}/training_qwen.jsonl",
+        ]
+    if not any(a == "--output_path" or a.startswith("--output_path=") for a in normalized_args):
+        normalized_args = list(normalized_args) + [
+            "--output_path", f"{VOLUME_PATH}/dpo_pairs.jsonl",
+        ]
+    cmd = ["python3", "-u", f"{PROJECT_DIR}/build_dpo_pairs.py", *normalized_args]
+    _run_subprocess_with_periodic_volume_commits(cmd)
+
+
+@app.function(
+    volumes={VOLUME_PATH: volume},
+    timeout=DEFAULT_TIMEOUT_SECONDS,
+    env=env,
+    image=image,
+    secrets=function_secrets,
+    gpu=DEFAULT_H200_GPU,
+    cpu=DEFAULT_CPU,
+    memory=DEFAULT_MEMORY_MB,
+)
+def dpo_remote(*args: str) -> None:
+    normalized_args = _normalize_dpo_train_args(args)
+    _assert_wandb_credentials_available_if_needed(normalized_args)
+    cmd = [
+        "torchrun", "--nproc_per_node", "4",
+        f"{PROJECT_DIR}/dpo_train.py", *normalized_args,
+    ]
+    _run_subprocess_with_periodic_volume_commits(
+        cmd,
+        extra_env={
+            "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True,garbage_collection_threshold:0.8",
+        },
+    )
+
+
+@app.function(
+    volumes={VOLUME_PATH: volume},
+    timeout=DEFAULT_TIMEOUT_SECONDS,
+    env=env,
+    image=image,
+    secrets=function_secrets,
+    gpu=DEFAULT_PPO_GPU,
+    cpu=DEFAULT_CPU,
+    memory=DEFAULT_MEMORY_MB,
+)
+def dpo_eval_remote(*args: str) -> None:
+    normalized_args = _normalize_dpo_eval_args(args)
+    cmd = ["python3", "-u", f"{PROJECT_DIR}/dpo_eval.py", *normalized_args]
+    _run_subprocess_with_periodic_volume_commits(
+        cmd,
+        extra_env={
+            "CUDA_VISIBLE_DEVICES": "0",
+        },
+    )
+
+
+@app.function(
+    volumes={VOLUME_PATH: volume},
+    timeout=60 * 30,
+    env=env,
+    image=image,
+    cpu=2.0,
+    memory=4096,
+)
+def jsonl_metrics_remote(*args: str) -> None:
+    normalized = list(args)
+    normalized = _rewrite_path_flag(
+        normalized, "--predictions_path",
+        default_relative_if_missing="runs/dpo_from_sft/test_predictions.jsonl",
+    )
+    normalized = _rewrite_path_flag(
+        normalized, "--output_path",
+        default_relative_if_missing="runs/dpo_from_sft/jsonl_eval_results.jsonl",
+    )
+    cmd = ["python3", "-u", f"{PROJECT_DIR}/jsonl_eval.py", *normalized]
+    _run_subprocess_with_periodic_volume_commits(cmd)
 
 
 @app.function(

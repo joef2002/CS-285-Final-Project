@@ -184,8 +184,31 @@ def main() -> None:
     # weighted accuracy = sum_{label} weight[label] * catch_rate[label]
     weighted_acc = sum(weights[lbl] * catch_rates[lbl] for lbl in LABELS)
 
+    # non-TP catch rate: proportion of non-TP gold labels that were correctly
+    # predicted as non-TP (uses counts tracked during evaluation)
+    non_tp_catch_rate = counts.get("non_tp_caught", 0) / max(1, counts.get("non_tp_gold", 0))
+
+    # parsed-only per-label gold counts and catch rates (ignore PARSE_FAIL)
+    parsed_gold_counts: dict[str, int] = {}
+    parsed_catch_rates: dict[str, float] = {}
+    for lbl in LABELS:
+        gold_parsed = sum(conf[(lbl, p)] for p in LABELS)
+        parsed_gold_counts[lbl] = gold_parsed
+        caught = conf[(lbl, lbl)]
+        parsed_catch_rates[lbl] = (caught / gold_parsed) if gold_parsed else 0.0
+
+    parsed_weighted_acc = sum(weights[lbl] * parsed_catch_rates[lbl] for lbl in LABELS)
+
+    # parsed non-TP catch rate: only considers parsed non-TP gold labels
+    parsed_non_tp_gold = sum(parsed_gold_counts[lbl] for lbl in LABELS if lbl != "TP")
+    parsed_non_tp_caught = sum(conf[(lbl, lbl)] for lbl in LABELS if lbl != "TP")
+    parsed_non_tp_catch_rate = parsed_non_tp_caught / max(1, parsed_non_tp_gold)
+
     print("\n=== Metrics ===")
     print(f"Weighted Accuracy: {weighted_acc:.4f}")
+    print(f"Non-TP Catch Rate: {non_tp_catch_rate:.4f}")
+    print(f"Parsed Weighted Accuracy: {parsed_weighted_acc:.4f}")
+    print(f"Parsed Non-TP Catch Rate: {parsed_non_tp_catch_rate:.4f}")
     print("Per-label weights and catch rates:")
     for lbl in LABELS:
         print(f"  {lbl}: weight={weights[lbl]:.4f} catch_rate={catch_rates[lbl]:.4f} (gold={gold_counts[lbl]})")
